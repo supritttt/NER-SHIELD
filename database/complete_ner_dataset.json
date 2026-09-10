@@ -1,0 +1,341 @@
+{
+  "metadata": {
+    "title": "NER-SHIELD Unified Master Dataset",
+    "problemStatement": "SIH26002: AI-Based Smart Logistics & Accessibility Intelligence for the North Eastern Region",
+    "statesCovered": [
+      "Assam",
+      "Meghalaya",
+      "Arunachal Pradesh",
+      "Manipur",
+      "Mizoram",
+      "Nagaland",
+      "Sikkim",
+      "Tripura"
+    ],
+    "totalDistricts": 16,
+    "generatedAt": "2026-09-10T22:46:58.302845",
+    "version": "2.0-SIH26"
+  },
+  "districts": [
+    {
+      "state": "Assam",
+      "district": "Kamrup Metropolitan (Guwahati)",
+      "district_id": "dist-kamrup",
+      "highway": "NH-27",
+      "segment_name": "Guwahati - Saraighat - Rangia Corridor",
+      "elevation_base": 55,
+      "slope_base": 8,
+      "landslide_freq": 2,
+      "drainage_base": 65,
+      "road_quality": 82,
+      "lat": 26.1445,
+      "lon": 91.7362,
+      "terrain_type": "Valley River Basin"
+    },
+    {
+      "state": "Assam",
+      "district": "Cachar (Silchar)",
+      "district_id": "dist-cachar",
+      "highway": "NH-37 / NH-6",
+      "segment_name": "Silchar - Badarpur - Kalain Pass",
+      "elevation_base": 35,
+      "slope_base": 12,
+      "landslide_freq": 4,
+      "drainage_base": 45,
+      "road_quality": 68,
+      "lat": 24.817,
+      "lon": 92.8,
+      "terrain_type": "Barak Valley Floodplain"
+    },
+    {
+      "state": "Assam",
+      "district": "Dima Hasao (Haflong)",
+      "district_id": "dist-dima-hasao",
+      "highway": "NH-27",
+      "segment_name": "Haflong Hill Section - Jatinga Valley",
+      "elevation_base": 960,
+      "slope_base": 38,
+      "landslide_freq": 9,
+      "drainage_base": 35,
+      "road_quality": 55,
+      "lat": 25.168,
+      "lon": 93.02,
+      "terrain_type": "Rugged Mountain Range"
+    },
+    {
+      "state": "Meghalaya",
+      "district": "East Khasi Hills (Shillong)",
+      "district_id": "dist-east-khasi",
+      "highway": "NH-6",
+      "segment_name": "Umiam - Mawlai - Shillong Peak Bypass",
+      "elevation_base": 1525,
+      "slope_base": 32,
+      "landslide_freq": 6,
+      "drainage_base": 50,
+      "road_quality": 75,
+      "lat": 25.5788,
+      "lon": 91.8933,
+      "terrain_type": "Highland Plateau"
+    },
+    {
+      "state": "Meghalaya",
+      "district": "East Jaintia Hills (Sonapur)",
+      "district_id": "dist-east-jaintia",
+      "highway": "NH-6",
+      "segment_name": "Sonapur Tunnel - Lukha River Gorge Lifeline",
+      "elevation_base": 890,
+      "slope_base": 48,
+      "landslide_freq": 10,
+      "drainage_base": 25,
+      "road_quality": 45,
+      "lat": 25.3117,
+      "lon": 92.4285,
+      "terrain_type": "Severe Mudslide Karst Chokepoint"
+    },
+    {
+      "state": "Arunachal Pradesh",
+      "district": "Tawang & West Kameng",
+      "district_id": "dist-tawang",
+      "highway": "NH-13",
+      "segment_name": "Bhalukpong - Bomdila - Sela Pass (4,170m)",
+      "elevation_base": 3048,
+      "slope_base": 45,
+      "landslide_freq": 8,
+      "drainage_base": 40,
+      "road_quality": 58,
+      "lat": 27.5861,
+      "lon": 91.8594,
+      "terrain_type": "Eastern Himalayan Alpine"
+    },
+    {
+      "state": "Arunachal Pradesh",
+      "district": "Papum Pare (Itanagar)",
+      "district_id": "dist-papum-pare",
+      "highway": "NH-415",
+      "segment_name": "Holongi - Itanagar - Naharlagun Arterial",
+      "elevation_base": 320,
+      "slope_base": 24,
+      "landslide_freq": 5,
+      "drainage_base": 55,
+      "road_quality": 70,
+      "lat": 27.0844,
+      "lon": 93.6053,
+      "terrain_type": "Sub-Himalayan Foothills"
+    },
+    {
+      "state": "Manipur",
+      "district": "Imphal West (Imphal)",
+      "district_id": "dist-imphal-west",
+      "highway": "NH-102",
+      "segment_name": "Imphal - Thoubal - Moreh Trans-Asian Highway",
+      "elevation_base": 786,
+      "slope_base": 14,
+      "landslide_freq": 3,
+      "drainage_base": 50,
+      "road_quality": 68,
+      "lat": 24.817,
+      "lon": 93.9368,
+      "terrain_type": "Manipur Central Valley"
+    },
+    {
+      "state": "Manipur",
+      "district": "Noney & Tamenglong",
+      "district_id": "dist-noney",
+      "highway": "NH-37",
+      "segment_name": "Noney Tupul - Makru Bridge Mountain Link",
+      "elevation_base": 980,
+      "slope_base": 42,
+      "landslide_freq": 9,
+      "drainage_base": 30,
+      "road_quality": 50,
+      "lat": 24.78,
+      "lon": 93.58,
+      "terrain_type": "Steep Hillside Chokepoint"
+    },
+    {
+      "state": "Mizoram",
+      "district": "Aizawl & Kolasib",
+      "district_id": "dist-aizawl",
+      "highway": "NH-306",
+      "segment_name": "Vairengte Gateway - Hunthar Slope - Aizawl",
+      "elevation_base": 1132,
+      "slope_base": 36,
+      "landslide_freq": 8,
+      "drainage_base": 38,
+      "road_quality": 60,
+      "lat": 23.7271,
+      "lon": 92.7176,
+      "terrain_type": "North-South Structural Ridge"
+    },
+    {
+      "state": "Mizoram",
+      "district": "Lunglei",
+      "district_id": "dist-lunglei",
+      "highway": "NH-54",
+      "segment_name": "Thenzawl - Lunglei Southern Lifeline",
+      "elevation_base": 1222,
+      "slope_base": 34,
+      "landslide_freq": 6,
+      "drainage_base": 42,
+      "road_quality": 58,
+      "lat": 22.88,
+      "lon": 92.73,
+      "terrain_type": "Rugged Mountain Escarpment"
+    },
+    {
+      "state": "Nagaland",
+      "district": "Kohima & Dimapur",
+      "district_id": "dist-kohima",
+      "highway": "NH-29",
+      "segment_name": "Dimapur Bypass - Pagla Pahar - Kohima Ridge",
+      "elevation_base": 1444,
+      "slope_base": 40,
+      "landslide_freq": 9,
+      "drainage_base": 32,
+      "road_quality": 52,
+      "lat": 25.6751,
+      "lon": 94.1086,
+      "terrain_type": "Active Tectonic Sinking Zone"
+    },
+    {
+      "state": "Nagaland",
+      "district": "Mokokchung",
+      "district_id": "dist-mokokchung",
+      "highway": "NH-702",
+      "segment_name": "Amguri - Tuli - Mokokchung Industrial Corridor",
+      "elevation_base": 1325,
+      "slope_base": 28,
+      "landslide_freq": 5,
+      "drainage_base": 48,
+      "road_quality": 62,
+      "lat": 26.32,
+      "lon": 94.52,
+      "terrain_type": "Hilly Ridge Crest"
+    },
+    {
+      "state": "Sikkim",
+      "district": "Gangtok & Mangan",
+      "district_id": "dist-gangtok",
+      "highway": "NH-10",
+      "segment_name": "Rangpo Border - 29th Mile Teesta Gorge - Gangtok",
+      "elevation_base": 1650,
+      "slope_base": 50,
+      "landslide_freq": 10,
+      "drainage_base": 20,
+      "road_quality": 48,
+      "lat": 27.3389,
+      "lon": 88.6065,
+      "terrain_type": "Teesta River Canyon Chokepoint"
+    },
+    {
+      "state": "Sikkim",
+      "district": "Pakyong (Airport Corridor)",
+      "district_id": "dist-pakyong",
+      "highway": "NH-717A",
+      "segment_name": "Rorathang - Pakyong Multi-Modal Link",
+      "elevation_base": 1350,
+      "slope_base": 35,
+      "landslide_freq": 7,
+      "drainage_base": 40,
+      "road_quality": 65,
+      "lat": 27.24,
+      "lon": 88.6,
+      "terrain_type": "Hill Slope Terraces"
+    },
+    {
+      "state": "Tripura",
+      "district": "West Tripura (Agartala)",
+      "district_id": "dist-west-tripura",
+      "highway": "NH-8",
+      "segment_name": "Churaibari Gate - Teliamura - Agartala Arterial",
+      "elevation_base": 15,
+      "slope_base": 10,
+      "landslide_freq": 3,
+      "drainage_base": 60,
+      "road_quality": 78,
+      "lat": 23.8315,
+      "lon": 91.2868,
+      "terrain_type": "Tripura Plain / Low Hillocks"
+    }
+  ],
+  "strategicHighways": [
+    {
+      "code": "NH-6",
+      "name": "Guwahati - Shillong - Silchar - Agartala Lifeline",
+      "keyChokepoints": [
+        "Sonapur Tunnel",
+        "Barapani Dam",
+        "Lukha Bridge"
+      ]
+    },
+    {
+      "code": "NH-27",
+      "name": "East-West Corridor (Siliguri - Guwahati - Silchar)",
+      "keyChokepoints": [
+        "Saraighat Bridge",
+        "Jatinga Valley"
+      ]
+    },
+    {
+      "code": "NH-10",
+      "name": "Siliguri - Teesta Gorge - Gangtok Lifeline",
+      "keyChokepoints": [
+        "29th Mile",
+        "Rangpo Checkpost",
+        "Singtam Junction"
+      ]
+    },
+    {
+      "code": "NH-13",
+      "name": "Trans-Arunachal Highway",
+      "keyChokepoints": [
+        "Sela Pass (4170m)",
+        "Jaswant Garh",
+        "Bhalukpong"
+      ]
+    },
+    {
+      "code": "NH-29",
+      "name": "Dimapur - Kohima - Imphal Lifeline",
+      "keyChokepoints": [
+        "Pagla Pahar",
+        "Dz\u00fckou Foothills"
+      ]
+    },
+    {
+      "code": "NH-37",
+      "name": "Jiribam - Noney - Imphal Lifeline",
+      "keyChokepoints": [
+        "Makru Bridge",
+        "Tupul Railway Link"
+      ]
+    },
+    {
+      "code": "NH-306",
+      "name": "Silchar - Vairengte - Aizawl Lifeline",
+      "keyChokepoints": [
+        "Hunthar Mudslide Zone",
+        "Vairengte Gate"
+      ]
+    },
+    {
+      "code": "NH-8",
+      "name": "Assam-Tripura Lifeline",
+      "keyChokepoints": [
+        "Churaibari Gate",
+        "Baramura Hills"
+      ]
+    }
+  ],
+  "emergencyProtocols": {
+    "SDRF_Assam": "1079",
+    "SDRF_Meghalaya": "1070",
+    "SDRF_Arunachal": "1077",
+    "SDRF_Manipur": "1070",
+    "SDRF_Mizoram": "1070",
+    "SDRF_Nagaland": "1070",
+    "SDRF_Sikkim": "1077",
+    "SDRF_Tripura": "1070",
+    "NHAI_Regional_Control": "+91-361-2234001"
+  }
+}

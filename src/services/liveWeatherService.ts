@@ -91,6 +91,24 @@ export const NER_DISTRICT_COORDS: DistrictCoord[] = [
     lon: 91.2868,
     elevation: '15m MSL',
     passes: ['Baramura Hill Pass', 'Churaibari Logistics Gate']
+  },
+  {
+    id: 'dist-cachar',
+    name: 'Cachar (Silchar)',
+    state: 'Assam',
+    lat: 24.8170,
+    lon: 92.8000,
+    elevation: '35m MSL',
+    passes: ['Badarpur Chokepoint', 'Kalain Pass Lifeline']
+  },
+  {
+    id: 'dist-dima-hasao',
+    name: 'Dima Hasao (Haflong)',
+    state: 'Assam',
+    lat: 25.1680,
+    lon: 93.0200,
+    elevation: '960m MSL',
+    passes: ['Jatinga Valley Gorge', 'Haflong Hill Corridor']
   }
 ];
 
@@ -110,10 +128,16 @@ export class LiveWeatherService {
   private cache: Map<string, { data: WeatherData; timestamp: number }> = new Map();
   private CACHE_TTL_MS = 5 * 60 * 1000; // 5 minute cache
 
-  async fetchDistrictLiveWeather(district: DistrictCoord): Promise<WeatherData> {
-    const cached = this.cache.get(district.id);
-    if (cached && Date.now() - cached.timestamp < this.CACHE_TTL_MS) {
-      return cached.data;
+  clearCache(): void {
+    this.cache.clear();
+  }
+
+  async fetchDistrictLiveWeather(district: DistrictCoord, bypassCache: boolean = false): Promise<WeatherData> {
+    if (!bypassCache) {
+      const cached = this.cache.get(district.id);
+      if (cached && Date.now() - cached.timestamp < this.CACHE_TTL_MS) {
+        return cached.data;
+      }
     }
 
     try {
@@ -132,7 +156,7 @@ export class LiveWeatherService {
       const condition = mapWeatherCode(weatherCode);
 
       // Compute Live Risk Indices based on actual weather & humidity
-      const isHighElevation = district.elevation.includes('1,') || district.elevation.includes('3,') || district.elevation.includes('890');
+      const isHighElevation = district.elevation.includes('1,') || district.elevation.includes('3,') || district.elevation.includes('890') || district.elevation.includes('960');
       const baseLandslide = isHighElevation ? 35 : 15;
       const landslideRiskIndex = Math.min(99, Math.max(10, Math.round(baseLandslide + rainMm * 0.8 + (humidity > 85 ? 15 : 0))));
       const flashFloodRiskIndex = Math.min(99, Math.max(10, Math.round(rainMm * 0.9 + (windKmh > 30 ? 15 : 0))));
@@ -152,6 +176,8 @@ export class LiveWeatherService {
         snowOrRain: `${rainMm}mm Rain / ${condition}`
       }));
 
+      const nowTimeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
       const weatherData: WeatherData = {
         districtId: district.id,
         districtName: district.name,
@@ -159,6 +185,9 @@ export class LiveWeatherService {
         temperatureC: tempC,
         condition: condition,
         rainfallMm: rainMm,
+        humidityPct: humidity,
+        isLive: true,
+        lastFetchedTime: nowTimeStr,
         windSpeedKmh: windKmh,
         visibilityMeters: warningLevel === 'Red' ? 250 : warningLevel === 'Orange' ? 800 : 3500,
         landslideRiskIndex: landslideRiskIndex,
@@ -175,8 +204,8 @@ export class LiveWeatherService {
     }
   }
 
-  async fetchAllLiveWeather(): Promise<WeatherData[]> {
-    const promises = NER_DISTRICT_COORDS.map(d => this.fetchDistrictLiveWeather(d));
+  async fetchAllLiveWeather(bypassCache: boolean = false): Promise<WeatherData[]> {
+    const promises = NER_DISTRICT_COORDS.map(d => this.fetchDistrictLiveWeather(d, bypassCache));
     return await Promise.all(promises);
   }
 

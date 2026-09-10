@@ -7,11 +7,13 @@ import {
   AlertOctagon, 
   CloudRain, 
   ShieldCheck,
-  Cpu
+  Cpu,
+  Activity
 } from 'lucide-react';
 
 export type NavTab = 
   | 'dashboard'
+  | 'live-feed'
   | 'districts'
   | 'gis-map'
   | 'routes'
@@ -38,10 +40,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
       icon: <LayoutDashboard className="w-4 h-4" />
     },
     {
+      id: 'live-feed',
+      label: 'Live Telemetry Feed',
+      icon: <Activity className="w-4 h-4 text-emerald-400" />,
+      badge: 'LIVE'
+    },
+    {
       id: 'districts',
       label: 'District Intelligence',
       icon: <MapPin className="w-4 h-4" />,
-      badge: '9 NER'
+      badge: '11 NER'
     },
     {
       id: 'gis-map',

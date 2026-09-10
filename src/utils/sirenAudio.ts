@@ -88,16 +88,17 @@ class CalamitySirenAudioEngine {
   }
 
   /**
-   * Voice synthesis calamity emergency warning for drivers
+   * Voice synthesis calamity emergency warning for drivers with Hindi & English support
    */
-  speakWarning(text: string): void {
+  speakWarning(text: string, lang: 'en' | 'hi' = 'en'): void {
     if (!('speechSynthesis' in window)) return;
     try {
       window.speechSynthesis.cancel(); // Stop any active speech
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 1.0;
-      utterance.pitch = 1.1;
+      utterance.rate = 0.95;
+      utterance.pitch = 1.05;
       utterance.volume = 1.0;
+      utterance.lang = lang === 'hi' ? 'hi-IN' : 'en-IN';
       window.speechSynthesis.speak(utterance);
     } catch (e) {
       console.warn('Speech synthesis failed:', e);

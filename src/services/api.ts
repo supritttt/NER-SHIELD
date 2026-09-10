@@ -910,6 +910,13 @@ class APIService {
     this.isDemoMode = enabled;
   }
 
+  async refreshAllLiveData(): Promise<{ districts: District[]; weather: WeatherData[] }> {
+    liveWeatherService.clearCache();
+    const weather = await liveWeatherService.fetchAllLiveWeather(true);
+    const districts = await this.getDistricts();
+    return { districts, weather };
+  }
+
   async getDistricts(): Promise<District[]> {
     const spDistricts = await supabaseService.getDistricts();
     if (spDistricts && spDistricts.length > 0) {

@@ -79,6 +79,9 @@ export interface WeatherData {
   temperatureC: number;
   condition: string;
   rainfallMm: number;
+  humidityPct?: number;
+  isLive?: boolean;
+  lastFetchedTime?: string;
   windSpeedKmh: number;
   visibilityMeters: number;
   landslideRiskIndex: number; // 0 - 100

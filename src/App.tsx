@@ -35,6 +35,8 @@ import { IncidentReportModal } from './components/incidents/IncidentReportModal'
 import { DistrictDetailModal } from './components/districts/DistrictDetailModal';
 import { CalamitySirenBanner } from './components/siren/CalamitySirenBanner';
 import { DriverSirenControlModal } from './components/siren/DriverSirenControlModal';
+import { LiveTelemetryView } from './components/live/LiveTelemetryView';
+import { LiveTelemetryTicker } from './components/dashboard/LiveTelemetryTicker';
 import { liveCalamityService, type CalamityAlert } from './services/liveCalamityService';
 import { supabaseService } from './services/supabaseService';
 import { Loader2 } from 'lucide-react';
@@ -129,6 +131,32 @@ export function App() {
     const nextMode = !isDemoMode;
     setIsDemoMode(nextMode);
     apiService.setDemoMode(nextMode);
+  };
+
+  const handleRefreshLiveData = async () => {
+    try {
+      const { districts: newDistricts, weather: newWeather } = await apiService.refreshAllLiveData();
+      setDistricts(newDistricts);
+      setWeatherList(newWeather);
+
+      // Check for live calamity alerts (USGS Seismic & Weather Thresholds)
+      const seismicAlerts = await liveCalamityService.fetchLiveSeismicCalamities();
+      if (seismicAlerts.length > 0) {
+        setActiveCalamityAlert(seismicAlerts[0]);
+      } else {
+        const severeDist = newWeather.find(item => item.warningLevel === 'Red' || item.landslideRiskIndex > 85);
+        if (severeDist) {
+          const weatherCalamity = liveCalamityService.generateCalamityFromWeather(
+            severeDist.districtName,
+            severeDist.rainfallMm,
+            severeDist.landslideRiskIndex
+          );
+          if (weatherCalamity) setActiveCalamityAlert(weatherCalamity);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to refresh live data:', err);
+    }
   };
 
   const handleOpenRouteOptimizerWithParams = (origin: string, destination: string) => {
@@ -270,6 +298,13 @@ export function App() {
               {/* TAB 1: MAIN DASHBOARD */}
               {activeTab === 'dashboard' && (
                 <div className="space-y-6 animate-count-up">
+                  {/* Live Telemetry Ingestion Ticker Bar */}
+                  <LiveTelemetryTicker
+                    weatherList={weatherList}
+                    onRefreshLive={handleRefreshLiveData}
+                    onOpenLiveFeed={() => setActiveTab('live-feed')}
+                  />
+
                   {/* KPI Cards Row */}
                   <KPICards 
                     kpis={kpis} 
@@ -301,6 +336,20 @@ export function App() {
 
                   {/* Performance Indicators */}
                   <PerformanceIndicators />
+                </div>
+              )}
+
+              {/* TAB: LIVE TELEMETRY STREAM & REAL-TIME FEEDS */}
+              {activeTab === 'live-feed' && (
+                <div className="animate-count-up">
+                  <LiveTelemetryView
+                    weatherList={weatherList}
+                    districts={districts}
+                    onRefreshLive={handleRefreshLiveData}
+                    onOpenRouteOptimizer={handleOpenRouteOptimizerWithParams}
+                    onOpenGISMap={() => setActiveTab('gis-map')}
+                    onTriggerCalamityAlert={(alert) => setActiveCalamityAlert(alert)}
+                  />
                 </div>
               )}
 

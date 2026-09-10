@@ -5,7 +5,8 @@ import {
   Map, 
   Navigation, 
   Truck,
-  AlertTriangle 
+  AlertTriangle,
+  Activity
 } from 'lucide-react';
 import type { NavTab } from './Sidebar';
 
@@ -22,6 +23,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
 }) => {
   const items: { id: NavTab; label: string; icon: React.ReactNode }[] = [
     { id: 'dashboard', label: 'Dash', icon: <LayoutDashboard className="w-5 h-5" /> },
+    { id: 'live-feed', label: 'Live', icon: <Activity className="w-5 h-5 text-emerald-400" /> },
     { id: 'districts', label: 'Districts', icon: <MapPin className="w-5 h-5" /> },
     { id: 'gis-map', label: 'Map', icon: <Map className="w-5 h-5" /> },
     { id: 'routes', label: 'Routes', icon: <Navigation className="w-5 h-5" /> },

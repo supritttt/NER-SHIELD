@@ -1,0 +1,38 @@
+{
+  "training_timestamp": "2026-09-10T22:50:39.360309",
+  "total_training_samples": 1310,
+  "live_samples_ingested": 12,
+  "feature_columns": [
+    "elevation_m",
+    "slope_angle_deg",
+    "road_quality_index",
+    "drainage_capacity_index",
+    "historical_landslide_freq",
+    "rainfall_24h_mm",
+    "cumulative_rainfall_7d_mm",
+    "soil_moisture_pct",
+    "temperature_c",
+    "humidity_pct",
+    "visibility_m",
+    "wind_speed_kmh",
+    "seismic_magnitude_usgs",
+    "heavy_vehicle_volume_per_hr"
+  ],
+  "metrics": {
+    "disruption_classifier_accuracy": 0.9389,
+    "risk_regressor_mae": 2.56,
+    "risk_regressor_r2": 0.961,
+    "delay_regressor_mae_minutes": 18.97,
+    "delay_regressor_r2": 0.842
+  },
+  "target_classes": [
+    "Clear",
+    "Dense Fog Blockage",
+    "Flash Flood",
+    "Landslide",
+    "Minor Slump & Slippage",
+    "Mudflow",
+    "Rockfall",
+    "Severe Waterlogging"
+  ]
+}
