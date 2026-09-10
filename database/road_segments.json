@@ -1,0 +1,291 @@
+[
+  {
+    "id": "seg-nh6-sonapur",
+    "name": "NH-6 Guwahati - Sonapur - Silchar Lifeline",
+    "code": "NH-6",
+    "state": "Meghalaya",
+    "coordinates": [
+      [
+        26.1445,
+        91.7362
+      ],
+      [
+        25.9,
+        91.82
+      ],
+      [
+        25.5788,
+        91.8933
+      ],
+      [
+        25.43,
+        92.15
+      ],
+      [
+        25.3117,
+        92.4285
+      ],
+      [
+        25.05,
+        92.65
+      ],
+      [
+        24.817,
+        92.8
+      ]
+    ],
+    "status": "Blocked",
+    "riskScore": 94,
+    "disruptionReason": "Massive mudslide & rockfall blocking both carriageways at Sonapur Tunnel portal (KM 132). 60m sludge.",
+    "detourAvailable": true,
+    "detourRouteName": "Alternate Haflong-Umrangso bypass (NH-27 / SH-19)",
+    "lengthKm": 312,
+    "lanes": "2-Lane Hill Corridor",
+    "avgSpeedKmH": 0,
+    "clearanceEta": "Est. Clearance: 6h 30m",
+    "trafficVolume": "8,450 PCU/day",
+    "lastUpdated": "12m ago (SAR Radar)"
+  },
+  {
+    "id": "seg-nh27-east-west",
+    "name": "NH-27 East-West Expressway (Guwahati - Nagaon - Lumding)",
+    "code": "NH-27",
+    "state": "Assam",
+    "coordinates": [
+      [
+        26.1445,
+        91.7362
+      ],
+      [
+        26.19,
+        92.05
+      ],
+      [
+        26.34,
+        92.68
+      ],
+      [
+        25.85,
+        92.95
+      ],
+      [
+        25.17,
+        93.02
+      ],
+      [
+        24.817,
+        92.8
+      ]
+    ],
+    "status": "Open",
+    "riskScore": 18,
+    "detourAvailable": true,
+    "detourRouteName": "Primary Safe AI Detour to Barak Valley",
+    "lengthKm": 374,
+    "lanes": "4-Lane Divided Expressway",
+    "avgSpeedKmH": 68,
+    "clearanceEta": "Free Flowing",
+    "trafficVolume": "22,400 PCU/day",
+    "lastUpdated": "Live Telemetry"
+  },
+  {
+    "id": "seg-nh10-teesta",
+    "name": "NH-10 Sevoke - Teesta Gorge - Gangtok Corridor",
+    "code": "NH-10",
+    "state": "Sikkim",
+    "coordinates": [
+      [
+        26.7271,
+        88.4312
+      ],
+      [
+        26.88,
+        88.47
+      ],
+      [
+        27.05,
+        88.52
+      ],
+      [
+        27.18,
+        88.53
+      ],
+      [
+        27.3389,
+        88.6065
+      ]
+    ],
+    "status": "Caution",
+    "riskScore": 74,
+    "disruptionReason": "Teesta river embankment scour at 29th Mile. Active single-lane alternating convoy guided by SDRF.",
+    "detourAvailable": true,
+    "detourRouteName": "Lava-Algarah-Reshi alternative corridor (NH-717A)",
+    "lengthKm": 114,
+    "lanes": "2-Lane River Gorge",
+    "avgSpeedKmH": 24,
+    "clearanceEta": "Speed Restricted 20 km/h",
+    "trafficVolume": "6,100 PCU/day",
+    "lastUpdated": "8m ago (CCTV Feed)"
+  },
+  {
+    "id": "seg-nh13-sela",
+    "name": "NH-13 Trans-Arunachal Highway (Tezpur - Sela Pass - Tawang)",
+    "code": "NH-13",
+    "state": "Arunachal Pradesh",
+    "coordinates": [
+      [
+        26.65,
+        92.8
+      ],
+      [
+        27.01,
+        92.63
+      ],
+      [
+        27.35,
+        92.24
+      ],
+      [
+        27.5,
+        92.1
+      ],
+      [
+        27.5861,
+        91.8594
+      ]
+    ],
+    "status": "Caution",
+    "riskScore": 68,
+    "disruptionReason": "High mountain icing and dense zero-visibility fog near Sela Tunnel switchbacks (4,170m MSL).",
+    "detourAvailable": false,
+    "lengthKm": 340,
+    "lanes": "2-Lane Mountain Highway",
+    "avgSpeedKmH": 28,
+    "clearanceEta": "Chains Mandatory at Sela",
+    "trafficVolume": "2,900 PCU/day",
+    "lastUpdated": "15m ago (BRO Post)"
+  },
+  {
+    "id": "seg-nh29-dimapur-kohima",
+    "name": "NH-29 Dimapur - Kohima 4-Lane Trunk Corridor",
+    "code": "NH-29",
+    "state": "Nagaland",
+    "coordinates": [
+      [
+        25.9,
+        93.73
+      ],
+      [
+        25.75,
+        93.9
+      ],
+      [
+        25.6751,
+        94.1086
+      ]
+    ],
+    "status": "Open",
+    "riskScore": 16,
+    "detourAvailable": true,
+    "detourRouteName": "Old Zubza bypass feeder",
+    "lengthKm": 74,
+    "lanes": "4-Lane Engineered Highway",
+    "avgSpeedKmH": 52,
+    "clearanceEta": "Normal Flow",
+    "trafficVolume": "11,200 PCU/day",
+    "lastUpdated": "Live Telemetry"
+  },
+  {
+    "id": "seg-nh37-silchar-imphal",
+    "name": "NH-37 Silchar - Jiribam - Makru - Imphal Arterial",
+    "code": "NH-37",
+    "state": "Manipur",
+    "coordinates": [
+      [
+        24.817,
+        92.8
+      ],
+      [
+        24.8,
+        93.12
+      ],
+      [
+        24.78,
+        93.5
+      ],
+      [
+        24.817,
+        93.9368
+      ]
+    ],
+    "status": "Caution",
+    "riskScore": 62,
+    "disruptionReason": "Minor embankment slip at Irang Bridge approach. Light commercial vehicles permitted with convoy.",
+    "detourAvailable": false,
+    "lengthKm": 220,
+    "lanes": "2-Lane Hill Arterial",
+    "avgSpeedKmH": 34,
+    "clearanceEta": "Convoy Managed",
+    "trafficVolume": "4,800 PCU/day",
+    "lastUpdated": "22m ago"
+  },
+  {
+    "id": "seg-nh306-aizawl",
+    "name": "NH-306 Silchar - Kolasib - Aizawl Gateway",
+    "code": "NH-306",
+    "state": "Mizoram",
+    "coordinates": [
+      [
+        24.817,
+        92.8
+      ],
+      [
+        24.2,
+        92.75
+      ],
+      [
+        23.7271,
+        92.7176
+      ]
+    ],
+    "status": "Open",
+    "riskScore": 22,
+    "detourAvailable": false,
+    "lengthKm": 130,
+    "lanes": "2-Lane Hilly Paved",
+    "avgSpeedKmH": 42,
+    "clearanceEta": "Normal Flow",
+    "trafficVolume": "5,300 PCU/day",
+    "lastUpdated": "Live Telemetry"
+  },
+  {
+    "id": "seg-nh8-tripura",
+    "name": "NH-8 Churaibari - Teliamura - Agartala Lifeline",
+    "code": "NH-8",
+    "state": "Tripura",
+    "coordinates": [
+      [
+        24.817,
+        92.8
+      ],
+      [
+        24.3,
+        92.2
+      ],
+      [
+        23.8315,
+        91.2868
+      ]
+    ],
+    "status": "Open",
+    "riskScore": 14,
+    "detourAvailable": true,
+    "detourRouteName": "Alternative Kailashahar-Khowai bypass",
+    "lengthKm": 198,
+    "lanes": "2-Lane Heavy Freight",
+    "avgSpeedKmH": 56,
+    "clearanceEta": "Normal Flow",
+    "trafficVolume": "9,800 PCU/day",
+    "lastUpdated": "Live Telemetry"
+  }
+]

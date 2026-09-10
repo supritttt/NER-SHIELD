@@ -1,0 +1,70 @@
+[
+  {
+    "id": "inc-901",
+    "title": "Massive Mudslide at Sonapur Portal",
+    "type": "Landslide",
+    "severity": "Severe",
+    "location": "NH-6, KM Marker 132, East Jaintia Hills",
+    "districtId": "dist-east-jaintia",
+    "districtName": "East Jaintia Hills",
+    "timestamp": "18 mins ago",
+    "coordinates": [
+      25.3117,
+      92.4285
+    ],
+    "verifiedByAI": true,
+    "reportsCount": 14,
+    "description": "Sludge and heavy boulders covering over 60 meters of double carriageway. Heavy earthmovers deployed by NHAI."
+  },
+  {
+    "id": "inc-902",
+    "title": "River Erosion Scour at 29th Mile",
+    "type": "Road Collapse",
+    "severity": "High",
+    "location": "NH-10 corridor near Teesta Bazar",
+    "districtId": "dist-gangtok",
+    "districtName": "Gangtok",
+    "timestamp": "42 mins ago",
+    "coordinates": [
+      27.18,
+      88.53
+    ],
+    "verifiedByAI": true,
+    "reportsCount": 8,
+    "description": "Swollen Teesta current damaged outer retaining wall. Light vehicle convoy guided one-way."
+  },
+  {
+    "id": "inc-903",
+    "title": "Freezing Fog & Rock Debris at Sela",
+    "type": "Fallen Debris",
+    "severity": "High",
+    "location": "NH-13, Baisakhi to Sela Tunnel approach",
+    "districtId": "dist-tawang",
+    "districtName": "Tawang & West Kameng",
+    "timestamp": "1 hour ago",
+    "coordinates": [
+      27.5,
+      92.1
+    ],
+    "verifiedByAI": true,
+    "reportsCount": 5,
+    "description": "Fresh rocks scattered on sharp hairpin bend. BRO bulldozers actively clearing loose scree."
+  },
+  {
+    "id": "inc-904",
+    "title": "Waterlogging at Khanapara Underpass",
+    "type": "Flash Flood",
+    "severity": "Moderate",
+    "location": "GS Road / Khanapara Flyover intersection",
+    "districtId": "dist-kamrup",
+    "districtName": "Kamrup Metropolitan (Guwahati)",
+    "timestamp": "2 hours ago",
+    "coordinates": [
+      26.115,
+      91.802
+    ],
+    "verifiedByAI": true,
+    "reportsCount": 22,
+    "description": "Flash runoff from Meghalaya hills causing 1.5ft water accumulation. Pumps operational, slow traffic movement."
+  }
+]

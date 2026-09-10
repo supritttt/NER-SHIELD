@@ -1,0 +1,481 @@
+[
+  {
+    "id": "dist-kamrup",
+    "name": "Kamrup Metropolitan (Guwahati)",
+    "state": "Assam",
+    "accessibilityScore": 92,
+    "riskLevel": "Low",
+    "activeIncidents": 1,
+    "majorHighway": "NH-27 / AH-1",
+    "elevation": "55m MSL",
+    "weatherSummary": "Light Drizzle, 28°C",
+    "rainfallMm": 12.4,
+    "roadStatus": "Open",
+    "coordinates": [
+      26.1445,
+      91.7362
+    ],
+    "historicalDisruptions": [
+      {
+        "month": "May",
+        "incidents": 3
+      },
+      {
+        "month": "Jun",
+        "incidents": 8
+      },
+      {
+        "month": "Jul",
+        "incidents": 14
+      },
+      {
+        "month": "Aug",
+        "incidents": 9
+      },
+      {
+        "month": "Sep",
+        "incidents": 4
+      }
+    ],
+    "emergencyContacts": [
+      {
+        "service": "State Disaster Response (SDRF)",
+        "number": "1079"
+      },
+      {
+        "service": "NHAI Guwahati Control",
+        "number": "+91-361-2234001"
+      }
+    ],
+    "keyPasses": [
+      "Saraighat Bridge Crossing",
+      "Khanapara Transit Chokepoint"
+    ]
+  },
+  {
+    "id": "dist-east-khasi",
+    "name": "East Khasi Hills (Shillong)",
+    "state": "Meghalaya",
+    "accessibilityScore": 78,
+    "riskLevel": "Moderate",
+    "activeIncidents": 2,
+    "majorHighway": "NH-6 (Guwahati-Shillong Expy)",
+    "elevation": "1,525m MSL",
+    "weatherSummary": "Heavy Mist & Mountain Rains, 18°C",
+    "rainfallMm": 45.8,
+    "roadStatus": "Caution",
+    "coordinates": [
+      25.5788,
+      91.8933
+    ],
+    "historicalDisruptions": [
+      {
+        "month": "May",
+        "incidents": 7
+      },
+      {
+        "month": "Jun",
+        "incidents": 19
+      },
+      {
+        "month": "Jul",
+        "incidents": 32
+      },
+      {
+        "month": "Aug",
+        "incidents": 24
+      },
+      {
+        "month": "Sep",
+        "incidents": 12
+      }
+    ],
+    "emergencyContacts": [
+      {
+        "service": "Meghalaya Police Control",
+        "number": "112"
+      },
+      {
+        "service": "Umiam Emergency Highway Patrol",
+        "number": "+91-364-2501234"
+      }
+    ],
+    "keyPasses": [
+      "Barapani Dam Viaduct",
+      "Mawlai Slope Corridor"
+    ]
+  },
+  {
+    "id": "dist-east-jaintia",
+    "name": "East Jaintia Hills (Sonapur)",
+    "state": "Meghalaya",
+    "accessibilityScore": 36,
+    "riskLevel": "Severe",
+    "activeIncidents": 4,
+    "majorHighway": "NH-6 (Silchar-Agartala Lifeline)",
+    "elevation": "890m MSL",
+    "weatherSummary": "Torrential Downpour, 21°C",
+    "rainfallMm": 88.2,
+    "roadStatus": "Blocked",
+    "coordinates": [
+      25.3117,
+      92.4285
+    ],
+    "historicalDisruptions": [
+      {
+        "month": "May",
+        "incidents": 15
+      },
+      {
+        "month": "Jun",
+        "incidents": 42
+      },
+      {
+        "month": "Jul",
+        "incidents": 58
+      },
+      {
+        "month": "Aug",
+        "incidents": 39
+      },
+      {
+        "month": "Sep",
+        "incidents": 27
+      }
+    ],
+    "emergencyContacts": [
+      {
+        "service": "Sonapur Tunnel Rescue Post",
+        "number": "+91-3655-220199"
+      },
+      {
+        "service": "Khliehriat Civil Hospital",
+        "number": "108"
+      }
+    ],
+    "keyPasses": [
+      "Sonapur Tunnel Entrance",
+      "Lukha River Bridge Bypass"
+    ]
+  },
+  {
+    "id": "dist-tawang",
+    "name": "Tawang & West Kameng",
+    "state": "Arunachal Pradesh",
+    "accessibilityScore": 54,
+    "riskLevel": "High",
+    "activeIncidents": 3,
+    "majorHighway": "NH-13 (Trans-Arunachal)",
+    "elevation": "3,048m MSL",
+    "weatherSummary": "Freezing Fog & Rockfall Alert, 8°C",
+    "rainfallMm": 31,
+    "roadStatus": "Caution",
+    "coordinates": [
+      27.5861,
+      91.8594
+    ],
+    "historicalDisruptions": [
+      {
+        "month": "May",
+        "incidents": 6
+      },
+      {
+        "month": "Jun",
+        "incidents": 12
+      },
+      {
+        "month": "Jul",
+        "incidents": 22
+      },
+      {
+        "month": "Aug",
+        "incidents": 18
+      },
+      {
+        "month": "Sep",
+        "incidents": 14
+      }
+    ],
+    "emergencyContacts": [
+      {
+        "service": "Border Roads Org (BRO) Vartak",
+        "number": "+91-3794-222240"
+      },
+      {
+        "service": "District Disaster Cell",
+        "number": "1077"
+      }
+    ],
+    "keyPasses": [
+      "Sela Pass (4,170m)",
+      "Jaswant Garh Ridge",
+      "Bhalukpong Gate"
+    ]
+  },
+  {
+    "id": "dist-imphal-west",
+    "name": "Imphal West & Noney",
+    "state": "Manipur",
+    "accessibilityScore": 68,
+    "riskLevel": "Moderate",
+    "activeIncidents": 2,
+    "majorHighway": "NH-37 (Silchar-Imphal)",
+    "elevation": "786m MSL",
+    "weatherSummary": "Scattered Showers, 24°C",
+    "rainfallMm": 22.1,
+    "roadStatus": "Caution",
+    "coordinates": [
+      24.817,
+      93.9368
+    ],
+    "historicalDisruptions": [
+      {
+        "month": "May",
+        "incidents": 4
+      },
+      {
+        "month": "Jun",
+        "incidents": 14
+      },
+      {
+        "month": "Jul",
+        "incidents": 26
+      },
+      {
+        "month": "Aug",
+        "incidents": 19
+      },
+      {
+        "month": "Sep",
+        "incidents": 8
+      }
+    ],
+    "emergencyContacts": [
+      {
+        "service": "Manipur Traffic Control",
+        "number": "0385-2450144"
+      },
+      {
+        "service": "Makru Bridge Incident Team",
+        "number": "112"
+      }
+    ],
+    "keyPasses": [
+      "Makru Bridge",
+      "Noney Tupul Railway-Highway Link"
+    ]
+  },
+  {
+    "id": "dist-aizawl",
+    "name": "Aizawl & Kolasib",
+    "state": "Mizoram",
+    "accessibilityScore": 71,
+    "riskLevel": "Moderate",
+    "activeIncidents": 1,
+    "majorHighway": "NH-306",
+    "elevation": "1,132m MSL",
+    "weatherSummary": "Cloudy, Occasional Drizzle, 22°C",
+    "rainfallMm": 18.5,
+    "roadStatus": "Open",
+    "coordinates": [
+      23.7271,
+      92.7176
+    ],
+    "historicalDisruptions": [
+      {
+        "month": "May",
+        "incidents": 5
+      },
+      {
+        "month": "Jun",
+        "incidents": 16
+      },
+      {
+        "month": "Jul",
+        "incidents": 29
+      },
+      {
+        "month": "Aug",
+        "incidents": 20
+      },
+      {
+        "month": "Sep",
+        "incidents": 10
+      }
+    ],
+    "emergencyContacts": [
+      {
+        "service": "Mizoram Disaster Cell",
+        "number": "1070"
+      },
+      {
+        "service": "Kolasib Checkpost Emergency",
+        "number": "+91-3837-220021"
+      }
+    ],
+    "keyPasses": [
+      "Vairengte Gateway",
+      "Hunthar Mudslide Zone"
+    ]
+  },
+  {
+    "id": "dist-kohima",
+    "name": "Kohima & Dimapur",
+    "state": "Nagaland",
+    "accessibilityScore": 82,
+    "riskLevel": "Low",
+    "activeIncidents": 1,
+    "majorHighway": "NH-29",
+    "elevation": "1,444m MSL",
+    "weatherSummary": "Partly Cloudy, 20°C",
+    "rainfallMm": 14,
+    "roadStatus": "Open",
+    "coordinates": [
+      25.6751,
+      94.1086
+    ],
+    "historicalDisruptions": [
+      {
+        "month": "May",
+        "incidents": 3
+      },
+      {
+        "month": "Jun",
+        "incidents": 11
+      },
+      {
+        "month": "Jul",
+        "incidents": 21
+      },
+      {
+        "month": "Aug",
+        "incidents": 13
+      },
+      {
+        "month": "Sep",
+        "incidents": 6
+      }
+    ],
+    "emergencyContacts": [
+      {
+        "service": "Nagaland State Police",
+        "number": "100"
+      },
+      {
+        "service": "Chumukedima Highway Patrol",
+        "number": "+91-3862-240112"
+      }
+    ],
+    "keyPasses": [
+      "Pagla Pahar Landslide Belt",
+      "Dzükou Foothill Pass"
+    ]
+  },
+  {
+    "id": "dist-gangtok",
+    "name": "Gangtok & Mangan",
+    "state": "Sikkim",
+    "accessibilityScore": 62,
+    "riskLevel": "High",
+    "activeIncidents": 3,
+    "majorHighway": "NH-10 (Siliguri-Sikkim Corridor)",
+    "elevation": "1,650m MSL",
+    "weatherSummary": "Heavy Downpour, Silt Runoff, 15°C",
+    "rainfallMm": 52.4,
+    "roadStatus": "Caution",
+    "coordinates": [
+      27.3389,
+      88.6065
+    ],
+    "historicalDisruptions": [
+      {
+        "month": "May",
+        "incidents": 8
+      },
+      {
+        "month": "Jun",
+        "incidents": 24
+      },
+      {
+        "month": "Jul",
+        "incidents": 41
+      },
+      {
+        "month": "Aug",
+        "incidents": 33
+      },
+      {
+        "month": "Sep",
+        "incidents": 18
+      }
+    ],
+    "emergencyContacts": [
+      {
+        "service": "Sikkim SDRF",
+        "number": "03592-202461"
+      },
+      {
+        "service": "Teesta Basin Rapid Response",
+        "number": "1070"
+      }
+    ],
+    "keyPasses": [
+      "29th Mile Teesta Gorge",
+      "Rangpo Border Hub",
+      "Singtam Junction"
+    ]
+  },
+  {
+    "id": "dist-west-tripura",
+    "name": "West Tripura (Agartala)",
+    "state": "Tripura",
+    "accessibilityScore": 89,
+    "riskLevel": "Low",
+    "activeIncidents": 0,
+    "majorHighway": "NH-8",
+    "elevation": "15m MSL",
+    "weatherSummary": "Clear Sky, High Humidity, 30°C",
+    "rainfallMm": 6.2,
+    "roadStatus": "Open",
+    "coordinates": [
+      23.8315,
+      91.2868
+    ],
+    "historicalDisruptions": [
+      {
+        "month": "May",
+        "incidents": 2
+      },
+      {
+        "month": "Jun",
+        "incidents": 7
+      },
+      {
+        "month": "Jul",
+        "incidents": 12
+      },
+      {
+        "month": "Aug",
+        "incidents": 8
+      },
+      {
+        "month": "Sep",
+        "incidents": 3
+      }
+    ],
+    "emergencyContacts": [
+      {
+        "service": "Tripura Emergency Ops",
+        "number": "1070"
+      },
+      {
+        "service": "Churaibari Border Transit",
+        "number": "+91-381-2323880"
+      }
+    ],
+    "keyPasses": [
+      "Baramura Hill Pass",
+      "Churaibari Logistics Gate"
+    ]
+  }
+]

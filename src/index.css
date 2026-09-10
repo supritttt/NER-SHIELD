@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    font-size: 17px;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #0f172a;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    letter-spacing: -0.011em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* NER Clean Light UI Utility Classes */
+@layer components {
+  .ner-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .ner-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  }
+
+  .ner-card-inset {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+  }
+
+  .ner-btn-primary {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 0.625rem;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .ner-btn-primary:hover {
+    background-color: #1e40af;
+    box-shadow: 0 4px 12px 0 rgba(29, 78, 216, 0.25);
+  }
+
+  .ner-btn-secondary {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
+    font-weight: 500;
+    border-radius: 0.625rem;
+    transition: all 0.15s ease;
+  }
+
+  .ner-btn-secondary:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+  }
+}
+
+/* Precision Tactical UI Utility Classes */
+@layer components {
+  /* High-Performance Tactical Card */
+  .neu-card {
+    background: #0e131d;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border: 1px solid #1b2434;
+    border-radius: 0.875rem;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .neu-card:hover {
+    border-color: #27354d;
+    box-shadow: 0 8px 28px -4px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* Recessed Sub-Surface / Well */
+  .neu-inset {
+    background: #090c14;
+    border: 1px solid #171f2e;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 0.625rem;
+  }
+
+  /* Precision Action Button */
+  .neu-btn {
+    background: #121824;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border: 1px solid #202b3d;
+    color: #cbd5e1;
+    border-radius: 0.625rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: all 0.15s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .neu-btn:hover {
+    background: #171f2f;
+    border-color: #2d3d57;
+    color: #38bdf8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  }
+
+  .neu-btn:active, .neu-btn.active {
+    background: #0c1018;
+    border-color: #1e2839;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
+    transform: translateY(1px);
+  }
+
+  /* Primary Accent CTA */
+  .neu-btn-primary {
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+    border: 1px solid #38bdf8;
+    box-shadow: 0 2px 10px rgba(14, 165, 233, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-radius: 0.625rem;
+    font-weight: 600;
+    transition: all 0.15s ease;
+  }
+
+  .neu-btn-primary:hover {
+    background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%);
+    box-shadow: 0 0 16px rgba(14, 165, 233, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .neu-btn-primary:active {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    transform: translateY(1px);
+  }
+
+  /* Recessed Form Input */
+  .neu-input {
+    background: #080b12;
+    border: 1px solid #1a2333;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
+    color: #f1f5f9;
+    border-radius: 0.625rem;
+    transition: all 0.15s ease;
+  }
+
+  .neu-input:focus {
+    outline: none;
+    border-color: #0ea5e9;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(14, 165, 233, 0.3);
+  }
+
+  /* Tactical Status Badge */
+  .neu-badge {
+    border-radius: 9999px;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Light & Dark Leaflet Container */
+.leaflet-container {
+  font-family: inherit;
+  z-index: 1 !important;
+}
+
+.leaflet-pane {
+  z-index: 10 !important;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 20 !important;
+}
+
+.light-map .leaflet-container {
+  background: #f8fafc !important;
+}
+
+.dark-tiles .leaflet-tile-pane {
+  filter: contrast(1.15) brightness(0.88);
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  border-radius: 0.75rem !important;
+}
+
+.leaflet-popup-content {
+  margin: 10px 14px !important;
+  line-height: 1.45 !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  padding: 6px 6px 0 0 !important;
+}
+

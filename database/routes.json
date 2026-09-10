@@ -1,0 +1,528 @@
+{
+  "guwahati-silchar": [
+    {
+      "id": "rt-nh6-direct",
+      "name": "Primary NH-6 Corridor (via Shillong & Sonapur)",
+      "type": "primary",
+      "distanceKm": 312,
+      "durationHours": 8.5,
+      "riskScore": 92,
+      "roadQuality": "Severe Vulnerability",
+      "coordinates": [
+        [
+          26.1445,
+          91.7362
+        ],
+        [
+          25.85,
+          91.8
+        ],
+        [
+          25.5788,
+          91.8933
+        ],
+        [
+          25.43,
+          92.15
+        ],
+        [
+          25.3117,
+          92.4285
+        ],
+        [
+          25.05,
+          92.65
+        ],
+        [
+          24.817,
+          92.8
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Guwahati Khanapara",
+          "status": "Clear"
+        },
+        {
+          "name": "Shillong Bypass",
+          "status": "Clear"
+        },
+        {
+          "name": "Sonapur Tunnel",
+          "status": "Blocked"
+        },
+        {
+          "name": "Silchar Entry",
+          "status": "Vulnerable"
+        }
+      ],
+      "warningNote": "CRITICAL: Mudslide block at Sonapur. Estimated clearance time > 6 hours."
+    },
+    {
+      "id": "rt-ai-alternate",
+      "name": "AI Smart Reroute: NH-27 via Nagaon & Haflong (Dima Hasao)",
+      "type": "recommended_alternate",
+      "distanceKm": 374,
+      "durationHours": 9.8,
+      "riskScore": 28,
+      "roadQuality": "Paved Highway",
+      "coordinates": [
+        [
+          26.1445,
+          91.7362
+        ],
+        [
+          26.19,
+          92.05
+        ],
+        [
+          26.34,
+          92.68
+        ],
+        [
+          25.85,
+          92.95
+        ],
+        [
+          25.17,
+          93.02
+        ],
+        [
+          24.817,
+          92.8
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Guwahati - Nagaon 4-Lane",
+          "status": "Clear"
+        },
+        {
+          "name": "Lumding - Haflong Corridor",
+          "status": "Clear"
+        },
+        {
+          "name": "Jatinga Valley Viaduct",
+          "status": "Clear"
+        },
+        {
+          "name": "Silchar Northern Bypass",
+          "status": "Clear"
+        }
+      ],
+      "warningNote": "RECOMMENDED BY NER-SHIELD: 62km longer but 100% passable with 0 landslide bottlenecks."
+    }
+  ],
+  "guwahati-tawang": [
+    {
+      "id": "rt-bhalukpong",
+      "name": "Direct Route via Bhalukpong & Sela Pass (NH-13)",
+      "type": "primary",
+      "distanceKm": 440,
+      "durationHours": 12,
+      "riskScore": 78,
+      "roadQuality": "Hilly Curvature",
+      "coordinates": [
+        [
+          26.1445,
+          91.7362
+        ],
+        [
+          26.65,
+          92.8
+        ],
+        [
+          27.01,
+          92.63
+        ],
+        [
+          27.35,
+          92.24
+        ],
+        [
+          27.5,
+          92.1
+        ],
+        [
+          27.5861,
+          91.8594
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Tezpur Kolia Bhomora",
+          "status": "Clear"
+        },
+        {
+          "name": "Bhalukpong Gate",
+          "status": "Clear"
+        },
+        {
+          "name": "Sela Tunnel Approach",
+          "status": "Blocked"
+        },
+        {
+          "name": "Tawang Base",
+          "status": "Clear"
+        }
+      ],
+      "warningNote": "CRITICAL: Sela Pass icing and rock debris. Single-lane convoy only."
+    },
+    {
+      "id": "rt-ai-tawang-detour",
+      "name": "AI Recommended: Trans-Arunachal via Kalaktang & Rupa Bypass",
+      "type": "recommended_alternate",
+      "distanceKm": 462,
+      "durationHours": 11.2,
+      "riskScore": 32,
+      "roadQuality": "Paved Highway",
+      "coordinates": [
+        [
+          26.1445,
+          91.7362
+        ],
+        [
+          26.8,
+          92.1
+        ],
+        [
+          27.1,
+          92.15
+        ],
+        [
+          27.25,
+          92.2
+        ],
+        [
+          27.5861,
+          91.8594
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Orang - Kalaktang Highway",
+          "status": "Clear"
+        },
+        {
+          "name": "Shergaon Valley Bypass",
+          "status": "Clear"
+        },
+        {
+          "name": "Dirang Transit Node",
+          "status": "Clear"
+        },
+        {
+          "name": "Tawang Civil Depot",
+          "status": "Clear"
+        }
+      ],
+      "warningNote": "RECOMMENDED BY NER-SHIELD: Avoids Sela scree hazard zone with higher average transit speed."
+    }
+  ],
+  "guwahati-shillong": [
+    {
+      "id": "rt-gs-nh6",
+      "name": "NH-6 Guwahati-Shillong 4-Lane Expressway",
+      "type": "primary",
+      "distanceKm": 98,
+      "durationHours": 2.2,
+      "riskScore": 24,
+      "roadQuality": "Paved Highway",
+      "coordinates": [
+        [
+          26.1445,
+          91.7362
+        ],
+        [
+          25.98,
+          91.78
+        ],
+        [
+          25.75,
+          91.88
+        ],
+        [
+          25.5788,
+          91.8933
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Khanapara Hub",
+          "status": "Clear"
+        },
+        {
+          "name": "Nongpoh Food Plaza",
+          "status": "Clear"
+        },
+        {
+          "name": "Umiam Lake Viewpoint",
+          "status": "Clear"
+        },
+        {
+          "name": "Mawlai Shillong Gate",
+          "status": "Clear"
+        }
+      ],
+      "warningNote": "Expressway open with light rain showers near Nongpoh."
+    },
+    {
+      "id": "rt-ai-gs-alt",
+      "name": "AI Recommended Scenic Detour via Byrnihat - Bhoirymbong",
+      "type": "recommended_alternate",
+      "distanceKm": 112,
+      "durationHours": 2.8,
+      "riskScore": 18,
+      "roadQuality": "Paved Highway",
+      "coordinates": [
+        [
+          26.1445,
+          91.7362
+        ],
+        [
+          26.02,
+          91.85
+        ],
+        [
+          25.8,
+          91.95
+        ],
+        [
+          25.5788,
+          91.8933
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Byrnihat Industrial Corridor",
+          "status": "Clear"
+        },
+        {
+          "name": "Bhoirymbong Airport Link",
+          "status": "Clear"
+        },
+        {
+          "name": "Shillong Golf Links Entry",
+          "status": "Clear"
+        }
+      ],
+      "warningNote": "Zero traffic congestion; heavy vehicle transit recommended."
+    }
+  ],
+  "guwahati-imphal": [
+    {
+      "id": "rt-nh29-direct",
+      "name": "Primary NH-29 & NH-2 Corridor (via Dimapur & Kohima)",
+      "type": "primary",
+      "distanceKm": 485,
+      "durationHours": 13.5,
+      "riskScore": 42,
+      "roadQuality": "Hilly Curvature",
+      "coordinates": [
+        [
+          26.1445,
+          91.7362
+        ],
+        [
+          26.34,
+          92.68
+        ],
+        [
+          25.9,
+          93.73
+        ],
+        [
+          25.6751,
+          94.1086
+        ],
+        [
+          24.817,
+          93.9368
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Guwahati - Nagaon 4-Lane",
+          "status": "Clear"
+        },
+        {
+          "name": "Dimapur Highway Gateway",
+          "status": "Clear"
+        },
+        {
+          "name": "Kohima Heavy Vehicle Bypass",
+          "status": "Vulnerable"
+        },
+        {
+          "name": "Mao Gate Border",
+          "status": "Clear"
+        },
+        {
+          "name": "Imphal Kangla Hub",
+          "status": "Clear"
+        }
+      ],
+      "warningNote": "Moderate transit delay at Kohima bypass during peak hours."
+    },
+    {
+      "id": "rt-ai-imphal-nh37",
+      "name": "AI Recommended Multi-Corridor: NH-27 via Silchar & Jiribam (NH-37)",
+      "type": "recommended_alternate",
+      "distanceKm": 520,
+      "durationHours": 14,
+      "riskScore": 35,
+      "roadQuality": "Paved Highway",
+      "coordinates": [
+        [
+          26.1445,
+          91.7362
+        ],
+        [
+          26.34,
+          92.68
+        ],
+        [
+          25.17,
+          93.02
+        ],
+        [
+          24.8,
+          93.12
+        ],
+        [
+          24.817,
+          93.9368
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Haflong Mountain Expressway",
+          "status": "Clear"
+        },
+        {
+          "name": "Silchar Logistics Hub",
+          "status": "Clear"
+        },
+        {
+          "name": "Makru Bridge Corridor",
+          "status": "Clear"
+        },
+        {
+          "name": "Noney Railway-Road Nexus",
+          "status": "Clear"
+        },
+        {
+          "name": "Imphal Valley Terminal",
+          "status": "Clear"
+        }
+      ],
+      "warningNote": "RECOMMENDED FOR HEAVY FREIGHT: Modern reinforced bridges and continuous military security convoy."
+    }
+  ],
+  "siliguri-gangtok": [
+    {
+      "id": "rt-nh10-teesta-direct",
+      "name": "NH-10 Direct via Sevoke & Teesta Gorge",
+      "type": "primary",
+      "distanceKm": 114,
+      "durationHours": 4.2,
+      "riskScore": 84,
+      "roadQuality": "Severe Vulnerability",
+      "coordinates": [
+        [
+          26.7271,
+          88.4312
+        ],
+        [
+          26.88,
+          88.47
+        ],
+        [
+          27.05,
+          88.52
+        ],
+        [
+          27.18,
+          88.53
+        ],
+        [
+          27.3389,
+          88.6065
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Sevoke Coronation Bridge",
+          "status": "Clear"
+        },
+        {
+          "name": "Teesta Bazar Corridor",
+          "status": "Blocked"
+        },
+        {
+          "name": "Rangpo Gateway",
+          "status": "Vulnerable"
+        },
+        {
+          "name": "Singtam Junction",
+          "status": "Clear"
+        },
+        {
+          "name": "Gangtok Deorali",
+          "status": "Clear"
+        }
+      ],
+      "warningNote": "CRITICAL: River scour at 29th Mile. Single-lane alternating convoy only."
+    },
+    {
+      "id": "rt-ai-gangtok-lava",
+      "name": "AI Recommended: Alternative Detour via Lava, Algarah & Reshi (NH-717A)",
+      "type": "recommended_alternate",
+      "distanceKm": 142,
+      "durationHours": 4.8,
+      "riskScore": 26,
+      "roadQuality": "Paved Highway",
+      "coordinates": [
+        [
+          26.7271,
+          88.4312
+        ],
+        [
+          26.95,
+          88.62
+        ],
+        [
+          27.1,
+          88.66
+        ],
+        [
+          27.2,
+          88.62
+        ],
+        [
+          27.3389,
+          88.6065
+        ]
+      ],
+      "checkpoints": [
+        {
+          "name": "Gorubathan Hill Ascent",
+          "status": "Clear"
+        },
+        {
+          "name": "Lava Pine Ridge",
+          "status": "Clear"
+        },
+        {
+          "name": "Reshi Border Bridge",
+          "status": "Clear"
+        },
+        {
+          "name": "Rhenock - Gangtok Bypass",
+          "status": "Clear"
+        }
+      ],
+      "warningNote": "RECOMMENDED BY NER-SHIELD: Completely avoids flooded Teesta gorge with 100% uptime."
+    }
+  ]
+}

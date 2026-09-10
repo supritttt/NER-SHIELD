@@ -1,0 +1,82 @@
+[
+  {
+    "id": "flt-101",
+    "vehicleNumber": "AS-01-GC-4921",
+    "driverName": "Pranab Kalita",
+    "cargoType": "Medical & Vaccines",
+    "origin": "Guwahati Logistics Hub",
+    "destination": "Silchar Civil Depot",
+    "status": "Rerouted",
+    "coordinates": [
+      25.78,
+      92.75
+    ],
+    "speedKmH": 34,
+    "etaMin": 180,
+    "riskLevel": "High"
+  },
+  {
+    "id": "flt-102",
+    "vehicleNumber": "ML-05-D-8824",
+    "driverName": "Banteilang Khongwir",
+    "cargoType": "Fresh Produce / FMCG",
+    "origin": "Shillong Wholesale",
+    "destination": "Guwahati Mandi",
+    "status": "On Schedule",
+    "coordinates": [
+      25.9,
+      91.82
+    ],
+    "speedKmH": 52,
+    "etaMin": 55,
+    "riskLevel": "Low"
+  },
+  {
+    "id": "flt-103",
+    "vehicleNumber": "AR-01-T-3109",
+    "driverName": "Dorjee Thongdok",
+    "cargoType": "Telecom Infrastructure",
+    "origin": "Tezpur Base",
+    "destination": "Tawang Station",
+    "status": "Delayed",
+    "coordinates": [
+      27.32,
+      92.22
+    ],
+    "speedKmH": 22,
+    "etaMin": 290,
+    "riskLevel": "High"
+  },
+  {
+    "id": "flt-104",
+    "vehicleNumber": "MN-01-B-7401",
+    "driverName": "L. Chaoba Singh",
+    "cargoType": "Petroleum & LPG",
+    "origin": "Khatkhati Depot",
+    "destination": "Imphal Valley Store",
+    "status": "On Schedule",
+    "coordinates": [
+      25.68,
+      94.05
+    ],
+    "speedKmH": 42,
+    "etaMin": 130,
+    "riskLevel": "Low"
+  },
+  {
+    "id": "flt-105",
+    "vehicleNumber": "SK-02-X-9905",
+    "driverName": "Karma Bhutia",
+    "cargoType": "Heavy Machinery Spares",
+    "origin": "Siliguri Railhead",
+    "destination": "Gangtok Power Grid",
+    "status": "Delayed",
+    "coordinates": [
+      27.12,
+      88.52
+    ],
+    "speedKmH": 18,
+    "etaMin": 160,
+    "riskLevel": "High"
+  }
+]

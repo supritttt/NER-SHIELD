@@ -1,0 +1,10 @@
+{
+  "disruptedSegmentsCount": 3,
+  "disruptedKm": 148,
+  "networkAccessibilityPct": 83.6,
+  "activeFleetsCount": 142,
+  "criticalIncidentsCount": 4,
+  "avgDelayMinutes": 46,
+  "aiPredictionConfidence": 94.8,
+  "reroutingEfficiencyPct": 91.2
+}

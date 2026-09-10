@@ -1,0 +1,102 @@
+[
+  {
+    "districtId": "dist-east-jaintia",
+    "districtName": "East Jaintia Hills (Sonapur)",
+    "state": "Meghalaya",
+    "temperatureC": 21,
+    "condition": "Torrential Rain & Thunder",
+    "rainfallMm": 88.2,
+    "windSpeedKmh": 42,
+    "visibilityMeters": 250,
+    "landslideRiskIndex": 96,
+    "flashFloodRiskIndex": 91,
+    "warningLevel": "Red",
+    "mountainPassStatus": [
+      {
+        "passName": "Sonapur Tunnel Portal",
+        "status": "Blocked",
+        "snowOrRain": "88mm Rain / Runoff"
+      },
+      {
+        "passName": "Khliehriat Bypass",
+        "status": "Caution",
+        "snowOrRain": "Mud Pools"
+      }
+    ]
+  },
+  {
+    "districtId": "dist-tawang",
+    "districtName": "Tawang & West Kameng",
+    "state": "Arunachal Pradesh",
+    "temperatureC": 8,
+    "condition": "Dense Freezing Mist",
+    "rainfallMm": 31,
+    "windSpeedKmh": 36,
+    "visibilityMeters": 180,
+    "landslideRiskIndex": 82,
+    "flashFloodRiskIndex": 45,
+    "warningLevel": "Orange",
+    "mountainPassStatus": [
+      {
+        "passName": "Sela Pass (4,170m)",
+        "status": "Caution",
+        "snowOrRain": "Sleet / Frost"
+      },
+      {
+        "passName": "Nechiphu Tunnel",
+        "status": "Open",
+        "snowOrRain": "Heavy Rain"
+      }
+    ]
+  },
+  {
+    "districtId": "dist-gangtok",
+    "districtName": "Gangtok & Mangan",
+    "state": "Sikkim",
+    "temperatureC": 15,
+    "condition": "Continuous Monsoon Downpour",
+    "rainfallMm": 52.4,
+    "windSpeedKmh": 28,
+    "visibilityMeters": 400,
+    "landslideRiskIndex": 88,
+    "flashFloodRiskIndex": 84,
+    "warningLevel": "Orange",
+    "mountainPassStatus": [
+      {
+        "passName": "29th Mile Teesta",
+        "status": "Caution",
+        "snowOrRain": "52mm Rain"
+      },
+      {
+        "passName": "Rangpo Gateway",
+        "status": "Open",
+        "snowOrRain": "Moderate Rain"
+      }
+    ]
+  },
+  {
+    "districtId": "dist-kamrup",
+    "districtName": "Kamrup Metropolitan (Guwahati)",
+    "state": "Assam",
+    "temperatureC": 28,
+    "condition": "Scattered Showers",
+    "rainfallMm": 12.4,
+    "windSpeedKmh": 14,
+    "visibilityMeters": 3500,
+    "landslideRiskIndex": 22,
+    "flashFloodRiskIndex": 38,
+    "warningLevel": "Yellow",
+    "mountainPassStatus": [
+      {
+        "passName": "Brahmaputra Saraighat",
+        "status": "Open",
+        "snowOrRain": "Light Rain"
+      },
+      {
+        "passName": "Jorabat Gap",
+        "status": "Caution",
+        "snowOrRain": "Water Accumulation"
+      }
+    ]
+  }
+]
