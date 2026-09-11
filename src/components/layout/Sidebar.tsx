@@ -1,17 +1,17 @@
-import { 
-  LayoutDashboard, 
-  MapPin, 
-  Map, 
-  Navigation, 
-  Truck, 
-  AlertOctagon, 
-  CloudRain, 
+import {
+  LayoutDashboard,
+  MapPin,
+  Map,
+  Navigation,
+  Truck,
+  AlertOctagon,
+  CloudRain,
   ShieldCheck,
   Cpu,
   Activity
 } from 'lucide-react';
 
-export type NavTab = 
+export type NavTab =
   | 'dashboard'
   | 'live-feed'
   | 'districts'
@@ -83,9 +83,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <aside
-      className={`hidden md:flex flex-col shrink-0 bg-[#090d16] border-r border-[#161e2e] transition-all duration-300 ${
-        isCollapsed ? 'w-20' : 'w-64'
-      } h-[calc(100vh-4rem)] sticky top-16 p-3.5 justify-between select-none z-20`}
+      className={`hidden md:flex flex-col shrink-0 bg-[#090d16] border-r border-[#161e2e] transition-all duration-300 ${isCollapsed ? 'w-20' : 'w-64'
+        } h-[calc(100vh-4rem)] sticky top-16 p-3.5 justify-between select-none z-20`}
     >
       <div className="space-y-5">
         {/* Section Title */}
@@ -106,16 +105,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 key={item.id}
                 onClick={() => onSelectTab(item.id)}
                 title={isCollapsed ? item.label : undefined}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-all duration-150 group ${
-                  isActive
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs transition-all duration-150 group ${isActive
                     ? 'bg-[#121926] text-cyan-300 font-semibold border-l-2 border-l-cyan-400 border-t border-r border-b border-[#1f2c42] shadow-sm'
                     : 'text-slate-400 hover:text-slate-100 hover:bg-[#0e1420] border-l-2 border-transparent'
-                }`}
+                  }`}
               >
                 <div
-                  className={`transition-colors ${
-                    isActive ? 'text-cyan-400' : 'text-slate-500 group-hover:text-cyan-300'
-                  }`}
+                  className={`transition-colors ${isActive ? 'text-cyan-400' : 'text-slate-500 group-hover:text-cyan-300'
+                    }`}
                 >
                   {item.icon}
                 </div>
@@ -125,11 +122,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     <span className="truncate">{item.label}</span>
                     {item.badge && (
                       <span
-                        className={`text-[9px] px-1.5 py-0.5 rounded font-mono ${
-                          isActive
+                        className={`text-[9px] px-1.5 py-0.5 rounded font-mono ${isActive
                             ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/40'
                             : 'bg-[#121824] text-slate-400 border border-[#1e2738]'
-                        }`}
+                          }`}
                       >
                         {item.badge}
                       </span>
