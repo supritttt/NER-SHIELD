@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { 
   X, 
   Navigation, 
@@ -9,7 +9,7 @@ import {
   Cpu
 } from 'lucide-react';
 import type { RouteOption } from '../../types';
-import { ROUTE_RECOMMENDATIONS } from '../../services/api';
+import { ROUTE_RECOMMENDATIONS, getDistrictCityNode } from '../../services/api';
 import { Badge } from '../common/Badge';
 
 interface RouteOptimizerModalProps {
@@ -27,10 +27,15 @@ export const RouteOptimizerModal: React.FC<RouteOptimizerModalProps> = ({
   initialDestination = 'Silchar',
   onCompute
 }) => {
-  const [origin, setOrigin] = useState(initialOrigin);
-  const [destination, setDestination] = useState(initialDestination);
+  const [origin, setOrigin] = useState(() => getDistrictCityNode(initialOrigin));
+  const [destination, setDestination] = useState(() => getDistrictCityNode(initialDestination));
   const [isCalculating, setIsCalculating] = useState(false);
   const [routes, setRoutes] = useState<RouteOption[]>(ROUTE_RECOMMENDATIONS['guwahati-silchar'] || []);
+
+  useEffect(() => {
+    if (initialOrigin) setOrigin(getDistrictCityNode(initialOrigin));
+    if (initialDestination) setDestination(getDistrictCityNode(initialDestination));
+  }, [initialOrigin, initialDestination, isOpen]);
 
   if (!isOpen) return null;
 

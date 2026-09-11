@@ -1,7 +1,7 @@
 import type { AuthUser } from '../types';
 
 export const TEXTBEE_CONFIG = {
-  apiKey: 'txb_kfocljUl5G9bplOkm77nkLVi0jcB8qzJ',
+  apiKey: import.meta.env.VITE_TEXTBEE_API_KEY || 'txb_kfocljUl5G9bplOkm77nkLVi0jcB8qzJ',
   apiUrl: 'https://api.textbee.dev/api/v1/gateway/send-sms',
   proxyUrl: '/api/textbee/send-sms',
 };

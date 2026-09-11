@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   Radio, 
   RefreshCw, 
@@ -188,6 +188,17 @@ export const LiveTelemetryView: React.FC<LiveTelemetryViewProps> = ({
     }
   };
 
+  const handleManualRefresh = useCallback(async () => {
+    setIsRefreshing(true);
+    try {
+      await onRefreshLive();
+      setLastRefreshedAt(new Date());
+      setSecondsAgo(0);
+    } finally {
+      setTimeout(() => setIsRefreshing(false), 600);
+    }
+  }, [onRefreshLive]);
+
   // Tick seconds ago
   useEffect(() => {
     const timer = setInterval(() => {
@@ -203,18 +214,7 @@ export const LiveTelemetryView: React.FC<LiveTelemetryViewProps> = ({
       handleManualRefresh();
     }, 45000);
     return () => clearInterval(interval);
-  }, [autoRefresh]);
-
-  const handleManualRefresh = async () => {
-    setIsRefreshing(true);
-    try {
-      await onRefreshLive();
-      setLastRefreshedAt(new Date());
-      setSecondsAgo(0);
-    } finally {
-      setTimeout(() => setIsRefreshing(false), 600);
-    }
-  };
+  }, [autoRefresh, handleManualRefresh]);
 
   const states = ['All', ...Array.from(new Set(weatherList.map(w => w.state)))];
 

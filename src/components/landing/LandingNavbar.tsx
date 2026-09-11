@@ -27,6 +27,7 @@ export function LandingNavbar({ onOpenPlatform, onOpenSignIn, onNavigateSection 
     { label: 'Smart Routing', href: '#smart-routing' },
     { label: 'Features', href: '#features' },
     { label: 'About NER', href: '#about-ner' },
+    { label: 'Team', href: '#team' },
   ];
 
   const handleLinkClick = (href: string) => {

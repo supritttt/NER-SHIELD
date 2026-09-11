@@ -250,6 +250,7 @@ export function App() {
           setCurrentView('landing');
           window.scrollTo(0, 0);
         }}
+        onOpenGISMap={() => setActiveTab('gis-map')}
         currentUser={currentUser}
         onOpenSignIn={() => {
           setCurrentView('signin');

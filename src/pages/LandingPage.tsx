@@ -10,6 +10,7 @@ import { HowItWorksSection } from '../sections/HowItWorksSection';
 import { ImpactSection } from '../sections/ImpactSection';
 import { TechStackSection } from '../sections/TechStackSection';
 import { AboutNERSection } from '../sections/AboutNERSection';
+import { TeamSection } from '../sections/TeamSection';
 import { FinalCTASection } from '../sections/FinalCTASection';
 import { FooterSection } from '../sections/FooterSection';
 
@@ -83,7 +84,10 @@ export function LandingPage({
         {/* 11. About North East Region Story */}
         <AboutNERSection />
 
-        {/* 12. Final CTA */}
+        {/* 12. Multidisciplinary Team Section */}
+        <TeamSection />
+
+        {/* 13. Final CTA */}
         <FinalCTASection
           onOpenPlatform={onOpenPlatform}
           onExploreRiskMap={() => scrollToSection('risk-map')}

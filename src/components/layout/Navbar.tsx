@@ -22,6 +22,7 @@ interface NavbarProps {
   onOpenReportModal: () => void;
   onOpenSirenModal?: () => void;
   onBackToLanding?: () => void;
+  onOpenGISMap?: () => void;
   currentUser?: AuthUser | null;
   onOpenSignIn?: () => void;
   onSignOut?: () => void;
@@ -37,6 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenReportModal,
   onOpenSirenModal,
   onBackToLanding,
+  onOpenGISMap,
   currentUser,
   onOpenSignIn,
   onSignOut,
@@ -292,7 +294,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                 <div className="mt-3 pt-2 border-t border-slate-800 flex justify-between items-center text-[11px] text-slate-400">
                   <span>AI Confidence: 94.8%</span>
-                  <span className="text-cyan-400 cursor-pointer hover:underline">View All in Map →</span>
+                  <button 
+                    onClick={() => {
+                      setShowNotifications(false);
+                      if (onOpenGISMap) onOpenGISMap();
+                    }}
+                    className="text-cyan-400 hover:text-cyan-300 transition-colors font-semibold"
+                  >
+                    View All in Map →
+                  </button>
                 </div>
               </div>
             )}

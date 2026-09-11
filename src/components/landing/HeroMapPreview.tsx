@@ -16,7 +16,13 @@ export function HeroMapPreview() {
   }, []);
 
   useEffect(() => {
-    if (!mapContainerRef.current) return;
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.remove();
+      mapInstanceRef.current = null;
+    }
+    if ((mapContainerRef.current as unknown as { _leaflet_id?: number })._leaflet_id) {
+      delete (mapContainerRef.current as unknown as { _leaflet_id?: number })._leaflet_id;
+    }
 
     // Center on coordinates covering India & North Eastern Region (zoom: 6, centered around [25.11, 80.77] or zoomed on NER)
     const center: [number, number] = [26.2, 92.6];

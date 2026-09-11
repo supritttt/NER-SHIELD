@@ -10,6 +10,7 @@ import {
 import type { District } from '../../types';
 import { Badge } from '../common/Badge';
 import { RadialGauge } from '../common/RadialGauge';
+import { getDistrictCityNode } from '../../services/api';
 
 interface DistrictDetailModalProps {
   district: District | null;
@@ -171,7 +172,7 @@ export const DistrictDetailModal: React.FC<DistrictDetailModalProps> = ({
 
           <button
             onClick={() => {
-              if (onOpenRouteOptimizer) onOpenRouteOptimizer('Guwahati', district.name.split(' ')[0]);
+              if (onOpenRouteOptimizer) onOpenRouteOptimizer('Guwahati', getDistrictCityNode(district.id || district.name));
               onClose();
             }}
             className="neu-btn-primary px-3.5 py-1.5 rounded-lg text-xs font-mono flex items-center gap-1.5"

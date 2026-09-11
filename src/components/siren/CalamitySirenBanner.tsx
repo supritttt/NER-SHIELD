@@ -23,10 +23,12 @@ export const CalamitySirenBanner: React.FC<CalamitySirenBannerProps> = ({
   onOpenRouteOptimizer
 }) => {
   const [isMuted, setIsMuted] = useState(false);
-  const [acknowledged, setAcknowledged] = useState(false);
+  const [acknowledgedAlertId, setAcknowledgedAlertId] = useState<string | null>(null);
+
+  const isAcknowledged = alert ? acknowledgedAlertId === alert.id : false;
 
   useEffect(() => {
-    if (alert && alert.active && alert.soundSiren && !acknowledged) {
+    if (alert && alert.active && alert.soundSiren && !isAcknowledged) {
       // Start siren sound and text-to-speech warning on screen prompt
       sirenAudioEngine.startSiren();
       sirenAudioEngine.speakWarning(
@@ -37,9 +39,9 @@ export const CalamitySirenBanner: React.FC<CalamitySirenBannerProps> = ({
     return () => {
       sirenAudioEngine.stopSiren();
     };
-  }, [alert, acknowledged]);
+  }, [alert, isAcknowledged]);
 
-  if (!alert || !alert.active) return null;
+  if (!alert || !alert.active || isAcknowledged) return null;
 
   const handleToggleMute = () => {
     if (isMuted) {
@@ -53,7 +55,7 @@ export const CalamitySirenBanner: React.FC<CalamitySirenBannerProps> = ({
 
   const handleAcknowledge = () => {
     sirenAudioEngine.stopSiren();
-    setAcknowledged(true);
+    if (alert) setAcknowledgedAlertId(alert.id);
     onDismiss();
   };
 

@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import type { VehicleFleet, FleetStatus } from '../../types';
 import { Badge } from '../common/Badge';
+import { getDistrictCityNode } from '../../services/api';
 
 interface FleetTrackingViewProps {
   fleets: VehicleFleet[];
@@ -123,7 +124,7 @@ export const FleetTrackingView: React.FC<FleetTrackingViewProps> = ({
               </span>
               <button
                 onClick={() => {
-                  if (onOpenRouteOptimizer) onOpenRouteOptimizer(fleet.origin.split(' ')[0], fleet.destination.split(' ')[0]);
+                  if (onOpenRouteOptimizer) onOpenRouteOptimizer(getDistrictCityNode(fleet.origin), getDistrictCityNode(fleet.destination));
                 }}
                 className="px-2.5 py-1 text-xs text-cyan-300 hover:text-white bg-[#101622] border border-[#1d293d] rounded flex items-center gap-1 font-mono"
               >

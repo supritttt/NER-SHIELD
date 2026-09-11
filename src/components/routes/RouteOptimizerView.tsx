@@ -1,10 +1,11 @@
-import { useState, Fragment } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { 
   MapContainer, 
   TileLayer, 
   Polyline, 
   Marker, 
-  Popup 
+  Popup,
+  useMap
 } from 'react-leaflet';
 import L from 'leaflet';
 import { 
@@ -12,15 +13,26 @@ import {
   MapPin, 
   AlertTriangle, 
   CheckCircle2, 
-  ArrowRight,
-  Cpu,
-  Layers,
-  Send,
-  Sparkles
+  ArrowRight, 
+  Cpu, 
+  Layers, 
+  Send, 
+  Sparkles 
 } from 'lucide-react';
 import type { RouteOption } from '../../types';
-import { ROUTE_RECOMMENDATIONS, apiService } from '../../services/api';
+import { ROUTE_RECOMMENDATIONS, apiService, getDistrictCityNode } from '../../services/api';
 import { Badge } from '../common/Badge';
+
+// Map controller to fly to active route corridor
+function MapController({ targetCenter, targetZoom }: { targetCenter: [number, number] | null; targetZoom?: number }) {
+  const map = useMap();
+  useEffect(() => {
+    if (targetCenter) {
+      map.flyTo(targetCenter, targetZoom || 8, { duration: 1.0 });
+    }
+  }, [targetCenter, targetZoom, map]);
+  return null;
+}
 
 // Leaflet map icons for route view
 const createRoutePinIcon = (color: string, label: string) => {
@@ -55,17 +67,40 @@ export const RouteOptimizerView: React.FC<RouteOptimizerViewProps> = ({
   initialDestination = 'Silchar',
   onDispatchRoute
 }) => {
-  const [origin, setOrigin] = useState(initialOrigin);
-  const [destination, setDestination] = useState(initialDestination);
+  const [origin, setOrigin] = useState(() => getDistrictCityNode(initialOrigin));
+  const [destination, setDestination] = useState(() => getDistrictCityNode(initialDestination));
   const [isCalculating, setIsCalculating] = useState(false);
   const [routes, setRoutes] = useState<RouteOption[]>(() => {
-    const key = `${initialOrigin.toLowerCase()}-${initialDestination.toLowerCase()}`;
+    const o = getDistrictCityNode(initialOrigin).toLowerCase();
+    const d = getDistrictCityNode(initialDestination).toLowerCase();
+    const key = `${o}-${d}`;
     return ROUTE_RECOMMENDATIONS[key] || ROUTE_RECOMMENDATIONS['guwahati-silchar'] || [];
   });
   const [selectedRouteId, setSelectedRouteId] = useState<string>(
     routes.find(r => r.type === 'recommended_alternate')?.id || routes[0]?.id || ''
   );
   const [dispatchSuccess, setDispatchSuccess] = useState(false);
+
+  // Synchronize with external prop triggers
+  useEffect(() => {
+    const newOrigin = getDistrictCityNode(initialOrigin || 'Guwahati');
+    const newDest = getDistrictCityNode(initialDestination || 'Silchar');
+    setOrigin(newOrigin);
+    setDestination(newDest);
+
+    const syncAndCompute = async () => {
+      setIsCalculating(true);
+      try {
+        const computed = await apiService.getRouteRecommendation(newOrigin, newDest);
+        setRoutes(computed);
+        const alt = computed.find(r => r.type === 'recommended_alternate');
+        setSelectedRouteId(alt ? alt.id : computed[0]?.id || '');
+      } finally {
+        setIsCalculating(false);
+      }
+    };
+    syncAndCompute();
+  }, [initialOrigin, initialDestination]);
 
   const handleCalculateRoute = async () => {
     setIsCalculating(true);
@@ -251,6 +286,8 @@ export const RouteOptimizerView: React.FC<RouteOptimizerViewProps> = ({
               className="w-full h-full"
               attributionControl={false}
             >
+              <MapController targetCenter={mapCenter} />
+
               {/* Standard OpenStreetMap Tile Layer as requested */}
               <TileLayer
                 url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"

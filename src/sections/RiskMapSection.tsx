@@ -35,6 +35,14 @@ export function RiskMapSection({ onOpenFullGIS }: RiskMapSectionProps) {
   useEffect(() => {
     if (!mapRef.current) return;
 
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.remove();
+      mapInstanceRef.current = null;
+    }
+    if ((mapRef.current as unknown as { _leaflet_id?: number })._leaflet_id) {
+      delete (mapRef.current as unknown as { _leaflet_id?: number })._leaflet_id;
+    }
+
     // Centered at [25.8, 93.2] or India view [25.11, 80.77] zoom 6
     const map = L.map(mapRef.current, {
       center: [25.8, 93.2],

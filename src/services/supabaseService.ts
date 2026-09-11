@@ -2,6 +2,30 @@ import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import type { District, Incident } from '../types';
 import type { CalamityAlert } from './liveCalamityService';
 
+function normalizeCoordinates(coords: unknown): [number, number] {
+  if (!coords) return [25.3117, 92.4285];
+  let parsed = coords;
+  if (typeof coords === 'string') {
+    try {
+      parsed = JSON.parse(coords);
+    } catch {
+      return [25.3117, 92.4285];
+    }
+  }
+  if (Array.isArray(parsed) && parsed.length >= 2) {
+    const lat = Number(parsed[0]);
+    const lng = Number(parsed[1]);
+    if (!isNaN(lat) && !isNaN(lng)) return [lat, lng];
+  }
+  if (typeof parsed === 'object' && parsed !== null) {
+    const obj = parsed as Record<string, unknown>;
+    const lat = Number(obj.lat ?? obj.latitude);
+    const lng = Number(obj.lng ?? obj.lon ?? obj.longitude);
+    if (!isNaN(lat) && !isNaN(lng)) return [lat, lng];
+  }
+  return [25.3117, 92.4285];
+}
+
 export class SupabaseService {
   isConfigured(): boolean {
     return isSupabaseConfigured && Boolean(supabase);
@@ -50,7 +74,7 @@ export class SupabaseService {
         districtId: i.district_id,
         districtName: i.district_name,
         timestamp: new Date(i.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        coordinates: typeof i.coordinates === 'string' ? JSON.parse(i.coordinates) : i.coordinates,
+        coordinates: normalizeCoordinates(i.coordinates),
         verifiedByAI: i.verified_by_ai,
         reportsCount: i.reports_count,
         description: i.description

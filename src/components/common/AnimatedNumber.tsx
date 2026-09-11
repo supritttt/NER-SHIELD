@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface AnimatedNumberProps {
   value: number;
@@ -16,10 +16,11 @@ export const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
   prefix = ''
 }) => {
   const [displayValue, setDisplayValue] = useState(0);
+  const prevValueRef = useRef(0);
 
   useEffect(() => {
     let startTimestamp: number | null = null;
-    const initial = displayValue;
+    const initial = prevValueRef.current;
     const diff = value - initial;
 
     const step = (timestamp: number) => {
@@ -34,11 +35,15 @@ export const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
         window.requestAnimationFrame(step);
       } else {
         setDisplayValue(value);
+        prevValueRef.current = value;
       }
     };
 
     const animFrame = window.requestAnimationFrame(step);
-    return () => window.cancelAnimationFrame(animFrame);
+    return () => {
+      window.cancelAnimationFrame(animFrame);
+      prevValueRef.current = value;
+    };
   }, [value, durationMs]);
 
   return (

@@ -1,4 +1,4 @@
-﻿export interface LandingFeature {
+export interface LandingFeature {
   id: string;
   title: string;
   description: string;
@@ -140,6 +140,98 @@ export const ROUTE_COMPARISON_DATA: { [key: string]: { origin: string; destinati
         ],
         weatherAlert: 'Light intermittent mist, cloudburst risk 8%',
         roadCondition: 'All-weather 2-lane paved with reinforced retaining walls',
+      },
+    ],
+  },
+  'guwahati-silchar': {
+    origin: 'Guwahati (Assam)',
+    destination: 'Silchar (Barak Valley)',
+    routes: [
+      {
+        id: 'route-a',
+        title: 'Route A — NH-6 via Shillong & Sonapur Tunnel',
+        badge: 'Primary Lifeline (Blocked)',
+        isAiRecommended: false,
+        distance: '312 km',
+        travelTime: '10h 30m',
+        riskLevel: 'Critical',
+        riskScore: 92,
+        hazardsAvoided: [],
+        features: [
+          'Shortest direct route between Brahmaputra & Barak Valleys',
+          'Passes directly through active Sonapur mudflow portal',
+          'Steep unstable shale escarpment prone to landslides',
+        ],
+        weatherAlert: 'Torrential downpour (88mm/hr) & rockfall warnings',
+        roadCondition: 'Impassable at Sonapur Tunnel (60m mudflow)',
+      },
+      {
+        id: 'route-b',
+        title: 'Route B — AI Recommended Detour via Haflong (NH-27 / SH-19)',
+        badge: 'AI RECOMMENDED',
+        isAiRecommended: true,
+        distance: '348 km',
+        travelTime: '8h 45m',
+        riskLevel: 'Low',
+        riskScore: 18,
+        hazardsAvoided: [
+          '100% circumvents blocked Sonapur Tunnel',
+          'Avoids fragile East Jaintia Hills mudflow belts',
+          'Reinforced 4-lane expressway over stable ridge line',
+        ],
+        features: [
+          'All-weather multi-lane mountain expressway',
+          'High average velocity (65 km/h)',
+          'Automated electronic tolling and emergency escort depots',
+        ],
+        weatherAlert: 'Scattered light showers, optimal visibility',
+        roadCondition: 'Paved divided 4-lane highway with anti-rockfall netting',
+      },
+    ],
+  },
+  'siliguri-gangtok': {
+    origin: 'Siliguri (West Bengal)',
+    destination: 'Gangtok (Sikkim)',
+    routes: [
+      {
+        id: 'route-a',
+        title: 'Route A — NH-10 Direct via Sevoke & Teesta Gorge',
+        badge: 'Direct Defile (Hazardous)',
+        isAiRecommended: false,
+        distance: '114 km',
+        travelTime: '4h 15m',
+        riskLevel: 'High',
+        riskScore: 84,
+        hazardsAvoided: [],
+        features: [
+          'Follows Teesta river canyon floor',
+          'Severely vulnerable to river scour at 29th Mile',
+          'Single-lane alternating convoys creating multi-hour delays',
+        ],
+        weatherAlert: 'Active flood surge alert along Teesta river bed',
+        roadCondition: 'Cracked pavement, washed-out embankments',
+      },
+      {
+        id: 'route-b',
+        title: 'Route B — AI Recommended Detour via Lava & Algarah (NH-717A)',
+        badge: 'AI RECOMMENDED',
+        isAiRecommended: true,
+        distance: '142 km',
+        travelTime: '4h 50m',
+        riskLevel: 'Low',
+        riskScore: 26,
+        hazardsAvoided: [
+          'Completely avoids swollen Teesta gorge and riverbed washouts',
+          'Bypasses 29th Mile single-lane bottleneck',
+          'Zero risk of river scour or flash flooding',
+        ],
+        features: [
+          'High-ridge mountain pass through stable pine forests',
+          '100% reliable year-round transit corridor',
+          'Smooth asphalt road built to modern BRO standards',
+        ],
+        weatherAlert: 'Light mountain mist, dry asphalt',
+        roadCondition: 'Paved mountain highway with reinforced retaining walls',
       },
     ],
   },

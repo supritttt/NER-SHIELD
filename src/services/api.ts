@@ -948,7 +948,7 @@ class APIService {
       try {
         const res = await fetch(`${this.apiBaseUrl}/roads`);
         if (res.ok) return await res.json();
-      } catch (e) {
+      } catch {
         // Fallback cleanly
       }
     }
@@ -960,7 +960,7 @@ class APIService {
       try {
         const res = await fetch(`${this.apiBaseUrl}/vehicles`);
         if (res.ok) return await res.json();
-      } catch (e) {
+      } catch {
         // Fallback cleanly
       }
     }
@@ -1005,6 +1005,18 @@ class APIService {
     const revKey = `${destination.toLowerCase()}-${origin.toLowerCase()}`;
     if (ROUTE_RECOMMENDATIONS[revKey]) {
       return ROUTE_RECOMMENDATIONS[revKey];
+    }
+
+    // Attempt resolved hub keys
+    const oNode = getDistrictCityNode(origin);
+    const dNode = getDistrictCityNode(destination);
+    const resolvedKey = `${oNode.toLowerCase()}-${dNode.toLowerCase()}`;
+    if (ROUTE_RECOMMENDATIONS[resolvedKey]) {
+      return ROUTE_RECOMMENDATIONS[resolvedKey];
+    }
+    const resolvedRevKey = `${dNode.toLowerCase()}-${oNode.toLowerCase()}`;
+    if (ROUTE_RECOMMENDATIONS[resolvedRevKey]) {
+      return ROUTE_RECOMMENDATIONS[resolvedRevKey];
     }
 
     // Dynamic coordinates dictionary for NER nodes
@@ -1078,3 +1090,21 @@ class APIService {
 }
 
 export const apiService = new APIService();
+
+export function getDistrictCityNode(input: string): string {
+  if (!input) return 'Guwahati';
+  const lower = input.toLowerCase();
+  if (lower.includes('shillong') || lower.includes('khasi') || lower.includes('dist-east-khasi')) return 'Shillong';
+  if (lower.includes('silchar') || lower.includes('cachar') || lower.includes('jaintia') || lower.includes('sonapur') || lower.includes('dist-east-jaintia') || lower.includes('dist-cachar')) return 'Silchar';
+  if (lower.includes('tawang') || lower.includes('kameng') || lower.includes('dist-tawang')) return 'Tawang';
+  if (lower.includes('imphal') || lower.includes('noney') || lower.includes('dist-imphal-west') || lower.includes('dist-noney')) return 'Imphal';
+  if (lower.includes('aizawl') || lower.includes('kolasib') || lower.includes('lunglei') || lower.includes('dist-aizawl')) return 'Aizawl';
+  if (lower.includes('kohima') || lower.includes('dist-kohima')) return 'Kohima';
+  if (lower.includes('dimapur')) return 'Dimapur';
+  if (lower.includes('gangtok') || lower.includes('sikkim') || lower.includes('mangan') || lower.includes('dist-gangtok')) return 'Gangtok';
+  if (lower.includes('siliguri')) return 'Siliguri';
+  if (lower.includes('tezpur')) return 'Tezpur';
+  if (lower.includes('agartala') || lower.includes('tripura') || lower.includes('dist-west-tripura')) return 'Agartala';
+  if (lower.includes('haflong') || lower.includes('dima hasao') || lower.includes('dist-dima-hasao')) return 'Silchar';
+  return 'Guwahati';
+}

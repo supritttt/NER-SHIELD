@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   X, 
   AlertTriangle, 
@@ -30,12 +30,22 @@ export const IncidentReportModal: React.FC<IncidentReportModalProps> = ({
   const [type, setType] = useState<IncidentType>('Landslide');
   const [severity, setSeverity] = useState<RiskLevel>('Severe');
   const [districtId, setDistrictId] = useState(initialDistrict ? initialDistrict.id : districts[0]?.id || '');
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState(initialDistrict?.majorHighway ? `${initialDistrict.majorHighway} corridor` : '');
   const [description, setDescription] = useState('');
-  const [coordinates, setCoordinates] = useState<[number, number]>([25.3117, 92.4285]);
+  const [coordinates, setCoordinates] = useState<[number, number]>(initialDistrict?.coordinates || [25.3117, 92.4285]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [offlineMode, setOfflineMode] = useState(false);
+
+  useEffect(() => {
+    if (initialDistrict) {
+      setDistrictId(initialDistrict.id);
+      setCoordinates(initialDistrict.coordinates);
+      if (!location && initialDistrict.majorHighway) {
+        setLocation(`${initialDistrict.majorHighway} corridor`);
+      }
+    }
+  }, [initialDistrict, isOpen]);
 
   if (!isOpen) return null;
 
