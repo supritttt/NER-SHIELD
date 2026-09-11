@@ -142,7 +142,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </nav>
       </div>
 
-      {/* Bottom Quantum Team & AI Engine Status Card */}
+      {/* Bottom VirasatX Team & AI Engine Status Card */}
       <div className="space-y-3 pt-3 border-t border-[#171f2e]">
         {!isCollapsed ? (
           <div className="p-3 rounded-lg bg-[#0c1018] border border-[#1a2334] text-left">
@@ -158,12 +158,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
             <div className="mt-2.5 pt-2 border-t border-[#1a2334] flex items-center justify-between text-[10px] text-slate-500 font-mono">
               <span>SIH26002</span>
-              <span className="text-cyan-400 font-bold">Team Quantum</span>
+              <span className="text-cyan-400 font-bold tracking-wide">Team VirasatX</span>
             </div>
           </div>
         ) : (
           <div className="flex justify-center">
-            <div className="p-2 rounded-lg bg-[#0c1018] border border-[#1a2334] text-emerald-400" title="Team Quantum AI Active">
+            <div className="p-2 rounded-lg bg-[#0c1018] border border-[#1a2334] text-emerald-400" title="Team VirasatX AI Active">
               <ShieldCheck className="w-5 h-5" />
             </div>
           </div>

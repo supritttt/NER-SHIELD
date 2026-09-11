@@ -18,7 +18,7 @@ import type { AuthUser } from '../types';
 
 interface SignInPageProps {
   onSuccessSignIn: (user: AuthUser) => void;
-  onBackToLanding: () => void;
+  onBackToLanding?: () => void;
 }
 
 export function SignInPage({ onSuccessSignIn, onBackToLanding }: SignInPageProps) {
@@ -99,6 +99,16 @@ export function SignInPage({ onSuccessSignIn, onBackToLanding }: SignInPageProps
     }
   };
 
+  const handleQuickDemoSignIn = () => {
+    setIsLoading(true);
+    setError(null);
+    const demoUser = authService.createSessionUser('+919876543210');
+    setTimeout(() => {
+      setIsLoading(false);
+      onSuccessSignIn(demoUser);
+    }, 300);
+  };
+
   const fillTestOtp = () => {
     if (devOtpCode) {
       setOtp(devOtpCode);
@@ -111,13 +121,24 @@ export function SignInPage({ onSuccessSignIn, onBackToLanding }: SignInPageProps
     <div className="min-h-screen bg-slate-50 flex flex-col justify-between selection:bg-blue-600/20 selection:text-blue-900">
       {/* Top Header */}
       <header className="w-full bg-white border-b border-slate-200 py-4 px-4 sm:px-8 flex items-center justify-between">
-        <button
-          onClick={onBackToLanding}
-          className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-blue-700 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Home</span>
-        </button>
+        {onBackToLanding ? (
+          <button
+            onClick={onBackToLanding}
+            className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-blue-700 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Public Site & Overview</span>
+          </button>
+        ) : (
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
+            <span className="p-1 rounded-md bg-blue-50 text-blue-600 border border-blue-200">
+              <Lock className="w-3.5 h-3.5" />
+            </span>
+            <span className="tracking-wide font-medium text-slate-700">
+              Secure Gateway &bull; Authentication Required
+            </span>
+          </div>
+        )}
 
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -150,7 +171,7 @@ export function SignInPage({ onSuccessSignIn, onBackToLanding }: SignInPageProps
             </div>
 
             <p className="text-xs text-blue-100/90 leading-relaxed mt-1">
-              Sign in with your phone number to access live GIS routing, hazard broadcast channels, and emergency telemetry.
+              Sign in with your mobile credentials or use instant demo access to enter the Logistics Command Console & Strategic Operations Platform.
             </p>
           </div>
 
@@ -306,8 +327,32 @@ export function SignInPage({ onSuccessSignIn, onBackToLanding }: SignInPageProps
               </form>
             )}
 
+            {/* Quick Demo Access Button */}
+            <div className="pt-2">
+              <div className="relative my-3">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-slate-200" />
+                </div>
+                <div className="relative flex justify-center text-[10px] uppercase">
+                  <span className="bg-white px-2.5 text-slate-400 font-bold font-mono tracking-wider">
+                    Or Instant Evaluation Access
+                  </span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleQuickDemoSignIn}
+                disabled={isLoading}
+                className="w-full py-2.5 px-4 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl text-xs font-bold font-mono flex items-center justify-center gap-2 transition-all border border-slate-300 shadow-sm hover:border-blue-400 hover:text-blue-700"
+              >
+                <Sparkles className="w-4 h-4 text-blue-600" />
+                <span>Quick Sign-In as Field Logistics Officer (Demo)</span>
+              </button>
+            </div>
+
             {/* TextBee Gateway Status Box */}
-            <div className="pt-4 border-t border-slate-100">
+            <div className="pt-2 border-t border-slate-100">
               <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 text-[11px] text-slate-600 space-y-1">
                 <div className="flex items-center justify-between font-medium text-slate-800">
                   <span className="flex items-center gap-1.5">

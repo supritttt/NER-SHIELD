@@ -106,7 +106,7 @@ Weather / Incidents / Road Data
 
 ## Team
 
-### Team Quantum
+### Team VirasatX
 
 Developed for **Smart India Hackathon 2026 — SIH26002**.
 

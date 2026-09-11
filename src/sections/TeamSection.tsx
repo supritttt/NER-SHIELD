@@ -1,4 +1,4 @@
-﻿import { TEAM_MEMBERS } from '../data/landingData';
+import { TEAM_MEMBERS } from '../data/landingData';
 
 export function TeamSection() {
   return (
@@ -7,11 +7,12 @@ export function TeamSection() {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="text-xs font-semibold text-blue-700 uppercase tracking-wider mb-2">
-            Multidisciplinary Team
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-3">
+            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+            Team VirasatX &bull; SIH 2026
           </div>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Built by Regional Systems Specialists.
+            Built by Team VirasatX
           </h2>
           <p className="mt-3 text-base text-slate-600">
             Uniting artificial intelligence, geospatial analysis, remote sensing, and frontline emergency response architecture.

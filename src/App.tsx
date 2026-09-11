@@ -48,8 +48,8 @@ import { authService } from './services/authService';
 import type { AuthUser } from './types';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<'landing' | 'platform' | 'signin'>('landing');
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(() => authService.getCurrentUser());
+  const [currentView, setCurrentView] = useState<'landing' | 'platform' | 'signin'>('landing');
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
   const [selectedState, setSelectedState] = useState('All North East');
   const [searchQuery, setSearchQuery] = useState('');
@@ -231,8 +231,8 @@ export function App() {
     selectedState === 'All North East' || d.state.toLowerCase() === selectedState.toLowerCase()
   );
 
-  // If user is on the Sign In Page
-  if (currentView === 'signin') {
+  // Protected Route: Before accessing the Platform Console (this), user must be authenticated
+  if (currentView === 'signin' || (currentView === 'platform' && !currentUser)) {
     return (
       <SignInPage
         onSuccessSignIn={(user) => {
@@ -248,12 +248,23 @@ export function App() {
     );
   }
 
-  // If user is on the Public SaaS Landing Page
+  // If user is on the Public First Page
   if (currentView === 'landing') {
     return (
       <LandingPage
+        currentUser={currentUser}
+        onSignOut={() => {
+          authService.signOut();
+          setCurrentUser(null);
+          setCurrentView('landing');
+          window.scrollTo(0, 0);
+        }}
         onOpenPlatform={() => {
-          setCurrentView('platform');
+          if (!currentUser) {
+            setCurrentView('signin');
+          } else {
+            setCurrentView('platform');
+          }
           window.scrollTo(0, 0);
         }}
         onOpenSignIn={() => {
@@ -264,12 +275,20 @@ export function App() {
           setRouteOrigin(origin);
           setRouteDestination(dest);
           setActiveTab('routes');
-          setCurrentView('platform');
+          if (!currentUser) {
+            setCurrentView('signin');
+          } else {
+            setCurrentView('platform');
+          }
           window.scrollTo(0, 0);
         }}
         onOpenFullGIS={() => {
           setActiveTab('gis-map');
-          setCurrentView('platform');
+          if (!currentUser) {
+            setCurrentView('signin');
+          } else {
+            setCurrentView('platform');
+          }
           window.scrollTo(0, 0);
         }}
       />

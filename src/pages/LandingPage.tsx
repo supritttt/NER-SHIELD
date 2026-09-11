@@ -13,12 +13,15 @@ import { AboutNERSection } from '../sections/AboutNERSection';
 import { TeamSection } from '../sections/TeamSection';
 import { FinalCTASection } from '../sections/FinalCTASection';
 import { FooterSection } from '../sections/FooterSection';
+import type { AuthUser } from '../types';
 
 interface LandingPageProps {
   onOpenPlatform: () => void;
   onOpenSignIn?: () => void;
   onOpenPlatformRouting?: (origin: string, dest: string) => void;
   onOpenFullGIS?: () => void;
+  currentUser?: AuthUser | null;
+  onSignOut?: () => void;
 }
 
 export function LandingPage({
@@ -26,6 +29,8 @@ export function LandingPage({
   onOpenSignIn,
   onOpenPlatformRouting,
   onOpenFullGIS,
+  currentUser,
+  onSignOut,
 }: LandingPageProps) {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -41,6 +46,8 @@ export function LandingPage({
         onOpenPlatform={onOpenPlatform}
         onOpenSignIn={onOpenSignIn}
         onNavigateSection={scrollToSection}
+        currentUser={currentUser}
+        onSignOut={onSignOut}
       />
 
       {/* Main Sections */}
