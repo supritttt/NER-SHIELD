@@ -17,7 +17,7 @@ Open your browser at: http://localhost:5173
 `ash
 npm run preview
 `
-Or view the pre-compiled production build inside the dist/ folder.
+Or view the pre-compiled production build inside the dist/ folder
 
 ---
 
