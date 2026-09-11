@@ -244,3 +244,4 @@ GET  /api/v1/alerts?language=hi
 ```
 
 See `docs/IMPLEMENTED_FEATURES.md` for the implementation changes and current limitations.
+thank you
