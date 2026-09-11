@@ -38,8 +38,8 @@ export const IncidentReportModal: React.FC<IncidentReportModalProps> = ({
     if (initialDistrict) {
       setDistrictId(initialDistrict.id);
       setCoordinates(initialDistrict.coordinates);
-      if (!location && initialDistrict.majorHighway) {
-        setLocation(`${initialDistrict.majorHighway} corridor`);
+      if (initialDistrict.majorHighway) {
+        setLocation(prev => prev || `${initialDistrict.majorHighway} corridor`);
       }
     }
   }, [initialDistrict, isOpen]);
