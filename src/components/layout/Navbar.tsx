@@ -198,12 +198,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Telemetry Mode Toggle */}
           <button
             onClick={onToggleDemoMode}
-            title={isDemoMode ? "Running in Demo Mode (Seed Telemetry). Click to toggle." : "Connected to Open-Meteo & USGS Live APIs"}
-            className="neu-btn px-2.5 py-1.5 rounded-xl text-xs flex items-center gap-1.5"
+            title={isDemoMode ? "Running in Demo Mode (Seed Telemetry). Click to toggle." : "Connected to Live Open-Meteo, USGS & GPS Telematics Engine"}
+            className={`neu-btn px-2.5 py-1.5 rounded-xl text-xs flex items-center gap-1.5 transition-all ${
+              !isDemoMode ? 'border-emerald-500/40 bg-emerald-950/30 text-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.2)]' : ''
+            }`}
           >
-            <Radio className={`w-3.5 h-3.5 ${isDemoMode ? 'text-amber-400 animate-pulse' : 'text-emerald-400'}`} />
-            <span className="hidden lg:inline text-[11px] font-mono">
-              {isDemoMode ? 'DEMO MODE' : 'LIVE API'}
+            <span className="relative flex h-2 w-2">
+              {!isDemoMode && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />}
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${isDemoMode ? 'bg-amber-400' : 'bg-emerald-500'}`} />
+            </span>
+            <span className="hidden lg:inline text-[11px] font-mono font-bold tracking-wider">
+              {isDemoMode ? 'DEMO MODE' : 'LIVE MONITORING'}
             </span>
           </button>
 

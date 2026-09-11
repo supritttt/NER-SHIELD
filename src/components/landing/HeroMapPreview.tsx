@@ -16,6 +16,8 @@ export function HeroMapPreview() {
   }, []);
 
   useEffect(() => {
+    if (!mapContainerRef.current) return;
+
     if (mapInstanceRef.current) {
       mapInstanceRef.current.remove();
       mapInstanceRef.current = null;

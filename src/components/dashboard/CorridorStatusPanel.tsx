@@ -44,8 +44,12 @@ export const CorridorStatusPanel: React.FC<CorridorStatusPanelProps> = ({
               Strategic Highway Telemetry & Flow Matrix
             </span>
           </div>
-          <span className="text-xs text-slate-400 hidden sm:inline">
+          <span className="text-xs text-slate-400 hidden sm:inline font-mono">
             ({roads.length} Monitored Arteries)
+          </span>
+          <span className="items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-500/30 text-[10px] text-emerald-300 font-mono hidden md:flex">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+            LIVE SENSORS SYNCED
           </span>
         </div>
 

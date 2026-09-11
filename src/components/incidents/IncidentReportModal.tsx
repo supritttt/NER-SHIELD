@@ -4,8 +4,6 @@ import {
   AlertTriangle, 
   MapPin, 
   CheckCircle, 
-  Wifi, 
-  WifiOff,
   Send
 } from 'lucide-react';
 import type { IncidentType, RiskLevel, District, Incident } from '../../types';
@@ -35,7 +33,6 @@ export const IncidentReportModal: React.FC<IncidentReportModalProps> = ({
   const [coordinates, setCoordinates] = useState<[number, number]>(initialDistrict?.coordinates || [25.3117, 92.4285]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [offlineMode, setOfflineMode] = useState(false);
 
   useEffect(() => {
     if (initialDistrict) {
@@ -124,25 +121,20 @@ export const IncidentReportModal: React.FC<IncidentReportModalProps> = ({
           </div>
         </div>
 
-        {/* Offline Simulation Banner */}
+        {/* Supabase Realtime Cloud Connection Banner */}
         <div className="flex items-center justify-between bg-[#090d15] border border-[#172030] px-3 py-2 rounded-lg my-4 text-xs font-mono">
           <div className="flex items-center gap-2">
-            {offlineMode ? (
-              <WifiOff className="w-4 h-4 text-amber-400 animate-pulse" />
-            ) : (
-              <Wifi className="w-4 h-4 text-emerald-400" />
-            )}
-            <span className={offlineMode ? 'text-amber-300' : 'text-emerald-300'}>
-              {offlineMode ? 'Offline Queue (Auto-Sync on 4G restore)' : 'Tactical Satellite Mesh Connected'}
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span className="text-emerald-300 text-[11px]">
+              Supabase Realtime Cloud Connected
             </span>
           </div>
-          <button
-            type="button"
-            onClick={() => setOfflineMode(!offlineMode)}
-            className="px-2 py-0.5 rounded bg-[#131b28] border border-[#1f2a3e] text-[10px] text-slate-300 hover:text-white"
-          >
-            Toggle Mode
-          </button>
+          <span className="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-[10px] text-emerald-300 font-mono">
+            Postgres DB Active
+          </span>
         </div>
 
         {success ? (
@@ -150,9 +142,12 @@ export const IncidentReportModal: React.FC<IncidentReportModalProps> = ({
             <div className="w-14 h-14 rounded-full neu-inset mx-auto flex items-center justify-center text-emerald-400 shadow-neu-glow-emerald">
               <CheckCircle className="w-8 h-8" />
             </div>
-            <h3 className="text-lg font-bold text-white">Hazard Dispatched to AI Model</h3>
+            <h3 className="text-lg font-bold text-white">Hazard Dispatched & Synced</h3>
+            <p className="text-xs text-emerald-300 font-mono">
+              ✓ Successfully written to Supabase Cloud Database (Live Broadcast Active)
+            </p>
             <p className="text-xs text-slate-400">
-              Corridor risk scores recalculated; vehicle routes automatically rerouting.
+              Corridor risk scores recalculated; commercial fleets automatically rerouting.
             </p>
           </div>
         ) : (

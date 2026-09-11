@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { 
   apiService, 
   INITIAL_DISTRICTS, 
@@ -39,6 +39,8 @@ import { LiveTelemetryView } from './components/live/LiveTelemetryView';
 import { LiveTelemetryTicker } from './components/dashboard/LiveTelemetryTicker';
 import { liveCalamityService, type CalamityAlert } from './services/liveCalamityService';
 import { supabaseService } from './services/supabaseService';
+import { liveFleetTelemetryService } from './services/liveFleetTelemetryService';
+import { LiveMonitoringStatusBar } from './components/live/LiveMonitoringStatusBar';
 import { Loader2 } from 'lucide-react';
 import { LandingPage } from './pages/LandingPage';
 import { SignInPage } from './pages/SignInPage';
@@ -71,6 +73,32 @@ export function App() {
   const [selectedDistrictModal, setSelectedDistrictModal] = useState<District | null>(null);
   const [routeOrigin, setRouteOrigin] = useState('Guwahati');
   const [routeDestination, setRouteDestination] = useState('Silchar');
+
+  const handleRefreshLiveData = useCallback(async () => {
+    try {
+      const { districts: newDistricts, weather: newWeather } = await apiService.refreshAllLiveData();
+      setDistricts(newDistricts);
+      setWeatherList(newWeather);
+
+      // Check for live calamity alerts (USGS Seismic & Weather Thresholds)
+      const seismicAlerts = await liveCalamityService.fetchLiveSeismicCalamities();
+      if (seismicAlerts.length > 0) {
+        setActiveCalamityAlert(seismicAlerts[0]);
+      } else {
+        const severeDist = newWeather.find(item => item.warningLevel === 'Red' || item.landslideRiskIndex > 85);
+        if (severeDist) {
+          const weatherCalamity = liveCalamityService.generateCalamityFromWeather(
+            severeDist.districtName,
+            severeDist.rainfallMm,
+            severeDist.landslideRiskIndex
+          );
+          if (weatherCalamity) setActiveCalamityAlert(weatherCalamity);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to refresh live data:', err);
+    }
+  }, []);
 
   // Initial Data Fetch & Realtime Calamity Siren Listener
   useEffect(() => {
@@ -117,46 +145,60 @@ export function App() {
 
     loadData();
 
+    // Start Live GPS Fleet Telemetry Stream
+    liveFleetTelemetryService.start();
+    const unsubFleets = liveFleetTelemetryService.subscribeToFleets((liveVehicles) => {
+      setVehicles(liveVehicles);
+    });
+
+    // Dynamic highway corridor flow speed fluctuations (every 3 seconds)
+    const roadSpeedTimer = setInterval(() => {
+      setRoads(prevRoads => prevRoads.map(r => {
+        if (r.status === 'Blocked') return r;
+        const delta = Math.floor((Math.random() - 0.48) * 4);
+        const base = r.code === 'NH-27' ? 68 : r.code === 'NH-29' ? 52 : r.code === 'NH-10' ? 24 : r.code === 'NH-13' ? 28 : 45;
+        const newSpeed = Math.max(14, Math.min(80, base + delta));
+        return { ...r, avgSpeedKmH: newSpeed };
+      }));
+    }, 3000);
+
+    // Continuous Open-Meteo background polling (every 45s)
+    const backgroundWeatherTimer = setInterval(() => {
+      handleRefreshLiveData();
+    }, 45000);
+
     // Subscribe to Supabase Realtime Siren Broadcasts
-    const unsubscribe = supabaseService.subscribeToCalamityAlerts((alert) => {
+    const unsubscribeSiren = supabaseService.subscribeToCalamityAlerts((alert) => {
       setActiveCalamityAlert(alert);
     });
 
+    // Subscribe to Supabase Realtime Hazard Reports (Postgres Changes)
+    const unsubscribeIncidents = supabaseService.subscribeToIncidents((newInc) => {
+      setIncidents(prev => {
+        if (prev.some(i => i.id === newInc.id)) return prev;
+        return [newInc, ...prev];
+      });
+      setKpis(prev => ({
+        ...prev,
+        criticalIncidentsCount: prev.criticalIncidentsCount + 1,
+        disruptedSegmentsCount: prev.disruptedSegmentsCount + 1,
+        networkAccessibilityPct: Math.max(prev.networkAccessibilityPct - 1.2, 50)
+      }));
+    });
+
     return () => {
-      unsubscribe();
+      unsubscribeSiren();
+      unsubscribeIncidents();
+      unsubFleets();
+      clearInterval(roadSpeedTimer);
+      clearInterval(backgroundWeatherTimer);
     };
-  }, [isDemoMode]);
+  }, [isDemoMode, handleRefreshLiveData]);
 
   const handleToggleDemoMode = () => {
     const nextMode = !isDemoMode;
     setIsDemoMode(nextMode);
     apiService.setDemoMode(nextMode);
-  };
-
-  const handleRefreshLiveData = async () => {
-    try {
-      const { districts: newDistricts, weather: newWeather } = await apiService.refreshAllLiveData();
-      setDistricts(newDistricts);
-      setWeatherList(newWeather);
-
-      // Check for live calamity alerts (USGS Seismic & Weather Thresholds)
-      const seismicAlerts = await liveCalamityService.fetchLiveSeismicCalamities();
-      if (seismicAlerts.length > 0) {
-        setActiveCalamityAlert(seismicAlerts[0]);
-      } else {
-        const severeDist = newWeather.find(item => item.warningLevel === 'Red' || item.landslideRiskIndex > 85);
-        if (severeDist) {
-          const weatherCalamity = liveCalamityService.generateCalamityFromWeather(
-            severeDist.districtName,
-            severeDist.rainfallMm,
-            severeDist.landslideRiskIndex
-          );
-          if (weatherCalamity) setActiveCalamityAlert(weatherCalamity);
-        }
-      }
-    } catch (err) {
-      console.error('Failed to refresh live data:', err);
-    }
   };
 
   const handleOpenRouteOptimizerWithParams = (origin: string, destination: string) => {
@@ -299,6 +341,9 @@ export function App() {
               {/* TAB 1: MAIN DASHBOARD */}
               {activeTab === 'dashboard' && (
                 <div className="space-y-6 animate-count-up">
+                  {/* Real-time GPS Telematics & Telemetry Monitoring Status Bar */}
+                  <LiveMonitoringStatusBar onRefreshWeather={handleRefreshLiveData} />
+
                   {/* Live Telemetry Ingestion Ticker Bar */}
                   <LiveTelemetryTicker
                     weatherList={weatherList}
@@ -372,6 +417,9 @@ export function App() {
               {/* TAB 3: GIS OPERATIONS MAP (FULLPAGE) */}
               {activeTab === 'gis-map' && (
                 <div className="animate-count-up space-y-4">
+                  {/* Real-Time Live Telemetry HUD Bar */}
+                  <LiveMonitoringStatusBar onRefreshWeather={handleRefreshLiveData} />
+
                   <div className="neu-card p-5 flex flex-wrap items-center justify-between gap-4">
                     <div>
                       <h2 className="text-base sm:text-lg font-semibold text-white tracking-tight">

@@ -1,5 +1,5 @@
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
-import type { District, Incident } from '../types';
+import type { District, Incident, RoadSegment, VehicleFleet } from '../types';
 import type { CalamityAlert } from './liveCalamityService';
 
 function normalizeCoordinates(coords: unknown): [number, number] {
@@ -59,7 +59,61 @@ export class SupabaseService {
     }
   }
 
-  // 2. Incidents
+  // 2. Road Segments
+  async getRoadSegments(): Promise<RoadSegment[] | null> {
+    if (!this.isConfigured() || !supabase) return null;
+    try {
+      const { data, error } = await supabase.from('road_segments').select('*');
+      if (error || !data || data.length === 0) return null;
+      return data.map(r => ({
+        id: r.id,
+        name: r.name,
+        code: r.code,
+        state: r.state,
+        status: r.status,
+        riskScore: r.risk_score,
+        disruptionReason: r.disruption_reason,
+        detourAvailable: Boolean(r.detour_available),
+        detourRouteName: r.detour_route_name,
+        lengthKm: Number(r.length_km),
+        lanes: r.lanes,
+        avgSpeedKmH: r.avg_speed_kmh,
+        clearanceEta: r.clearance_eta,
+        trafficVolume: r.traffic_volume,
+        coordinates: (Array.isArray(r.coordinates) ? r.coordinates : []) as [number, number][],
+        lastUpdated: 'Supabase Live'
+      }));
+    } catch {
+      return null;
+    }
+  }
+
+  // 3. Vehicle Fleets
+  async getVehicles(): Promise<VehicleFleet[] | null> {
+    if (!this.isConfigured() || !supabase) return null;
+    try {
+      const { data, error } = await supabase.from('vehicle_fleets').select('*');
+      if (error || !data || data.length === 0) return null;
+      return data.map(v => ({
+        id: v.id,
+        vehicleNumber: v.vehicle_number,
+        driverName: v.driver_name,
+        cargoType: v.cargo_type,
+        origin: v.origin,
+        destination: v.destination,
+        status: v.status,
+        coordinates: [Number(v.latitude), Number(v.longitude)],
+        speedKmH: Number(v.speed_kmh || 40),
+        etaMin: Number(v.eta_min || 120),
+        riskLevel: v.risk_level || 'Low',
+        lastTelemetryPing: 'Supabase Realtime'
+      }));
+    } catch {
+      return null;
+    }
+  }
+
+  // 4. Incidents
   async getIncidents(): Promise<Incident[] | null> {
     if (!this.isConfigured() || !supabase) return null;
     try {
@@ -84,10 +138,14 @@ export class SupabaseService {
     }
   }
 
-  async saveIncident(inc: Incident): Promise<boolean> {
-    if (!this.isConfigured() || !supabase) return false;
+  async saveIncident(inc: Incident): Promise<{ success: boolean; error?: string }> {
+    if (!this.isConfigured() || !supabase) {
+      console.warn('[SupabaseService] Supabase not configured, skipping cloud save');
+      return { success: false, error: 'Supabase not configured' };
+    }
     try {
-      const { error } = await supabase.from('incidents').insert({
+      console.log('[SupabaseService] Writing hazard report to Supabase DB:', inc.id, inc.title);
+      const { data, error } = await supabase.from('incidents').insert({
         id: inc.id,
         title: inc.title,
         type: inc.type,
@@ -99,11 +157,64 @@ export class SupabaseService {
         verified_by_ai: inc.verifiedByAI,
         reports_count: inc.reportsCount,
         description: inc.description
-      });
-      return !error;
-    } catch {
-      return false;
+      }).select();
+
+      if (error) {
+        console.error('[SupabaseService] Error saving incident to Supabase:', error);
+        return { success: false, error: error.message };
+      }
+
+      console.log('[SupabaseService] Successfully saved incident to Supabase:', data);
+      return { success: true };
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error('[SupabaseService] Exception saving incident to Supabase:', msg);
+      return { success: false, error: msg };
     }
+  }
+
+  /**
+   * Listen in real-time to Hazard Incidents reported across Supabase DB
+   */
+  subscribeToIncidents(onIncidentReceived: (incident: Incident) => void): () => void {
+    if (!this.isConfigured() || !supabase) {
+      return () => {};
+    }
+
+    const channel = supabase
+      .channel('public:incidents_realtime_stream')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'incidents' },
+        (payload) => {
+          const i = payload.new;
+          if (i) {
+            console.log('[Supabase Realtime] New hazard incident reported via Postgres Changes:', i.id);
+            const incident: Incident = {
+              id: i.id,
+              title: i.title,
+              type: i.type,
+              severity: i.severity,
+              location: i.location,
+              districtId: i.district_id,
+              districtName: i.district_name,
+              timestamp: 'Just now (Supabase Live)',
+              coordinates: normalizeCoordinates(i.coordinates),
+              verifiedByAI: i.verified_by_ai,
+              reportsCount: i.reports_count || 1,
+              description: i.description
+            };
+            onIncidentReceived(incident);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      if (supabase) {
+        supabase.removeChannel(channel);
+      }
+    };
   }
 
   // 3. Calamity Alerts & Driver Siren System

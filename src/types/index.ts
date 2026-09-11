@@ -55,7 +55,46 @@ export interface VehicleFleet {
   speedKmH: number;
   etaMin: number;
   riskLevel: RiskLevel;
+  headingDeg?: number;
+  altitudeM?: number;
+  odometerKm?: number;
+  lastTelemetryPing?: string;
+  satelliteCount?: number;
+  signalStrengthPct?: number;
+  recentBreadcrumbs?: [number, number][];
+  currentHighway?: string;
 }
+
+export interface LiveTelemetryPacket {
+  packetId: string;
+  timestamp: string;
+  vehicleId: string;
+  vehicleNumber: string;
+  driverName: string;
+  cargoType: string;
+  coordinates: [number, number];
+  speedKmH: number;
+  headingDeg: number;
+  altitudeM: number;
+  status: FleetStatus;
+  highwayCode: string;
+  satelliteCount: number;
+  signalPct: number;
+  latencyMs: number;
+}
+
+export interface LiveTelemetryStats {
+  isStreaming: boolean;
+  packetsReceivedTotal: number;
+  packetsPerSecond: number;
+  activeSatellites: number;
+  averageLatencyMs: number;
+  signalIntegrityPct: number;
+  lastHeartbeat: string;
+  movingFleetsCount: number;
+  speedMultiplier: number;
+}
+
 
 export interface Incident {
   id: string;

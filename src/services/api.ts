@@ -944,6 +944,10 @@ class APIService {
   }
 
   async getRoadSegments(): Promise<RoadSegment[]> {
+    const spRoads = await supabaseService.getRoadSegments();
+    if (spRoads && spRoads.length > 0) {
+      return spRoads;
+    }
     if (!this.isDemoMode) {
       try {
         const res = await fetch(`${this.apiBaseUrl}/roads`);
@@ -956,6 +960,10 @@ class APIService {
   }
 
   async getVehicles(): Promise<VehicleFleet[]> {
+    const spVehicles = await supabaseService.getVehicles();
+    if (spVehicles && spVehicles.length > 0) {
+      return spVehicles;
+    }
     if (!this.isDemoMode) {
       try {
         const res = await fetch(`${this.apiBaseUrl}/vehicles`);
@@ -969,10 +977,12 @@ class APIService {
 
   async getIncidents(): Promise<Incident[]> {
     const spIncidents = await supabaseService.getIncidents();
+    const map = new Map<string, Incident>();
+    INITIAL_INCIDENTS.forEach(inc => map.set(inc.id, inc));
     if (spIncidents && spIncidents.length > 0) {
-      return spIncidents;
+      spIncidents.forEach(inc => map.set(inc.id, inc));
     }
-    return INITIAL_INCIDENTS;
+    return Array.from(map.values());
   }
 
   async getWeather(districtId?: string): Promise<WeatherData[]> {

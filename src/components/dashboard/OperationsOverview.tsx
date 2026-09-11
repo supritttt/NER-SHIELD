@@ -49,11 +49,36 @@ const incidentIcon = createTacticalIcon(
   true
 );
 
-const vehicleIcon = createTacticalIcon(
-  'bg-slate-900/90',
-  'border-cyan-500/80',
-  '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>'
-);
+// Dynamic live vehicle marker with directional arrow heading and speed pill
+const createLiveVehicleIcon = (veh: VehicleFleet) => {
+  const isMoving = veh.speedKmH > 0;
+  const isDelayed = veh.status === 'Delayed';
+  const isRerouted = veh.status === 'Rerouted';
+  const borderColor = isDelayed ? '#f59e0b' : isRerouted ? '#a855f7' : '#06b6d4';
+  const heading = veh.headingDeg || 0;
+
+  return L.divIcon({
+    className: 'custom-live-vehicle-marker',
+    html: `
+      <div style="display: flex; flex-direction: column; align-items: center; width: 44px; margin-left: -22px; margin-top: -24px;">
+        <div style="background: rgba(8, 14, 26, 0.95); border: 1px solid ${borderColor}; color: #38bdf8; font-family: monospace; font-size: 9px; font-weight: bold; padding: 1px 4px; border-radius: 4px; margin-bottom: 2px; white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.6);">
+          ${veh.speedKmH} km/h
+        </div>
+        <div style="position: relative; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
+          ${isMoving ? `<span class="animate-ping" style="position: absolute; width: 100%; height: 100%; border-radius: 9999px; background-color: ${borderColor}; opacity: 0.4;"></span>` : ''}
+          <div style="width: 28px; height: 28px; border-radius: 8px; background: #0b1220; border: 2px solid ${borderColor}; display: flex; align-items: center; justify-content: center; transform: rotate(${heading}deg); transition: transform 0.4s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.85);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="${borderColor}" fill-opacity="0.35" stroke="${borderColor}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 19 21 12 17 5 21 12 2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    `,
+    iconSize: [44, 44],
+    iconAnchor: [22, 22],
+    popupAnchor: [0, -20]
+  });
+};
 
 // Map controller to fly to active road selection
 function MapController({ targetCenter, targetZoom }: { targetCenter: [number, number] | null; targetZoom?: number }) {
@@ -314,31 +339,72 @@ export const OperationsOverview: React.FC<OperationsOverviewProps> = ({
             </Marker>
           ))}
 
-          {/* Real-time Fleet Logistics Vehicles */}
-          {showVehicles && vehicles.map((veh) => (
-            <Marker
-              key={veh.id}
-              position={veh.coordinates}
-              icon={vehicleIcon}
-            >
-              <Popup>
-                <div className="space-y-1 text-xs font-mono">
-                  <div className="font-bold text-sm text-cyan-300 flex items-center justify-between">
-                    <span>{veh.vehicleNumber}</span>
-                    <Badge value={veh.status} />
-                  </div>
-                  <div className="text-slate-300">Cargo: <span className="text-white font-semibold">{veh.cargoType}</span></div>
-                  <div className="text-slate-400 text-[11px]">
-                    Driver: {veh.driverName} • Route: {veh.origin} → {veh.destination}
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] pt-1 text-cyan-400">
-                    <span>Telemetry Speed: {veh.speedKmH} km/h</span>
-                    <span>ETA: {veh.etaMin}m</span>
-                  </div>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
+          {/* Real-time Fleet Logistics Vehicles & Live Breadcrumb Trails */}
+          {showVehicles && vehicles.map((veh) => {
+            const hasTrail = veh.recentBreadcrumbs && veh.recentBreadcrumbs.length > 1;
+            return (
+              <div key={`veh-group-${veh.id}`}>
+                {/* Live Breadcrumb Trail */}
+                {hasTrail && (
+                  <Polyline
+                    positions={veh.recentBreadcrumbs!}
+                    pathOptions={{
+                      color: veh.status === 'Delayed' ? '#f59e0b' : veh.status === 'Rerouted' ? '#c084fc' : '#22d3ee',
+                      weight: 3,
+                      opacity: 0.6,
+                      dashArray: '4, 4'
+                    }}
+                  />
+                )}
+
+                {/* Moving Vehicle Marker */}
+                <Marker
+                  position={veh.coordinates}
+                  icon={createLiveVehicleIcon(veh)}
+                >
+                  <Popup>
+                    <div className="space-y-1.5 text-xs font-mono min-w-[220px]">
+                      <div className="flex items-center justify-between gap-2 pb-1 border-b border-slate-800">
+                        <span className="font-bold text-sm text-cyan-300">{veh.vehicleNumber}</span>
+                        <Badge value={veh.status} />
+                      </div>
+                      <div className="text-slate-200 font-semibold">{veh.cargoType}</div>
+                      <div className="text-slate-400 text-[11px]">
+                        Driver: {veh.driverName}
+                      </div>
+                      <div className="text-slate-400 text-[11px]">
+                        Route: {veh.origin} → {veh.destination}
+                      </div>
+                      <div className="p-1.5 rounded bg-[#0b101c] border border-[#1b263b] space-y-1 text-[11px]">
+                        <div className="flex items-center justify-between text-cyan-400 font-semibold">
+                          <span>Live Speed:</span>
+                          <span>{veh.speedKmH} km/h</span>
+                        </div>
+                        <div className="flex items-center justify-between text-slate-300">
+                          <span>GPS Coords:</span>
+                          <span>{veh.coordinates[0].toFixed(3)}°N, {veh.coordinates[1].toFixed(3)}°E</span>
+                        </div>
+                        {veh.altitudeM && (
+                          <div className="flex items-center justify-between text-amber-400">
+                            <span>Altitude MSL:</span>
+                            <span>{veh.altitudeM}m</span>
+                          </div>
+                        )}
+                        <div className="flex items-center justify-between text-emerald-400">
+                          <span>Remaining ETA:</span>
+                          <span>{veh.etaMin} mins</span>
+                        </div>
+                      </div>
+                      <div className="text-[10px] text-slate-500 flex items-center justify-between pt-0.5">
+                        <span>Satellites: {veh.satelliteCount || 14} locked</span>
+                        <span>{veh.lastTelemetryPing || 'Live Stream'}</span>
+                      </div>
+                    </div>
+                  </Popup>
+                </Marker>
+              </div>
+            );
+          })}
         </MapContainer>
       </div>
 
